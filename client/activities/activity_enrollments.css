@@ -1,0 +1,21 @@
+.enroll-btn, .register-btn {
+	position:fixed;
+	left:0;
+	bottom:0;
+	background: #5d7900;
+	padding-bottom: 55px;
+	width: 100%;
+	height: 49px;
+	font-size: 18px;
+	color: #fff;
+	line-height: 49px;
+	text-align: center;
+	border: 0;
+	z-index: 1001;
+}
+/*.enroll-btn {
+	opacity: 0.3;
+}*/
+.delete-enrollment {
+	float: right; margin-right: 10px; margin-left: 5px; margin-top: 8px; background: #F5F5DC; color: #868686; border: 0;
+}

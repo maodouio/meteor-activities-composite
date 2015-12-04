@@ -1,0 +1,63 @@
+<template name="activityCard">
+  {{#with activity}}
+    <div class="pic">
+        <div class="{{getClassByStatus}}" id="3ggmM69ggaDo5wB8r">
+          <div class="postImgBox">
+            <div class="postImg">
+              <img alt="image" class="postImage" src="{{file.url}}">
+              <div class="postInfo">
+                <h1 class="postTitle">
+                  <div class="postTitleBor" style="padding-bottom: 5px;">
+                    <br style="padding: 0 0 0 0;">
+                    <span style="font-size: 18px;">{{title}}</span>
+                    <br style="padding: 0 0 0 0;">
+                    <span style="font-size: 12px;">活动时间: {{formatdatetime time}}</span>
+                  </div>
+                </h1>
+              </div>
+            </div>
+          </div>
+          <div class="actUserInfo">
+
+            <a href='/users/{{userId}}'>
+              <img alt="image" src="{{headimgurl}}" class="actUserPhoto" />
+            </a>
+            <p class="actUserNameBox" style="padding-top: 5px;">
+              <span class="actUserName">{{username userId}}</span>
+              <span class="actUserLabel">{{formatdatetime createdAt}}</span> &nbsp;&nbsp;&nbsp;
+
+              {{#if hasPackage "ActivityEnrollments"}}
+                <span class="actUserLabel nm ">已有{{enrollmentsCount}}人报名</span>
+              {{/if}}
+            </p>
+
+            {{#if hasPackage "ActivityLikes"}}
+              {{#if hasLiked}}
+                <i class="fa fa-thumbs-up dislike"  style="float: right; font-size: large; color: #E96F4B; padding-right: 15px; padding-top: 25px;">&nbsp;<span style="font-size: 14px;">{{likesCount}}</span></i>
+              {{else}}
+                <i class="fa fa-thumbs-o-up like" style="float: right; font-size: large; color: #E96F4B; padding-right: 15px; padding-top: 25px;">&nbsp;<span class="actUserLabel nm" style="font-size: 14px;">{{likesCount}}</span></i>
+              {{/if}}
+            {{/if}}
+
+          </div>
+          <div class="clear"></div>
+        </div>
+        <div class="darenActShadow" style="background-color: #CCC;"></div>
+
+      {{#if statusIs "ENROLLING"}}
+        <span class="tf enroll">火热报名中</span>
+      {{/if}}
+      {{#if statusIs "REGISTERING"}}
+        <span class="tf registration">正在签到中</span>
+      {{/if}}
+      {{#if statusIs "CLOSED"}}
+        <span class="tf closed">活动已结束</span>
+      {{/if}}
+      {{#if statusIs "CANCEL"}}
+        <span class="tf cancel">活动已取消</span>
+      {{/if}}
+
+    </div>
+
+  {{/with}}
+</template>

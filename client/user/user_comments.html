@@ -1,0 +1,21 @@
+<template name="userComments">
+	<div class="container">
+		<div class="page-header text-center">
+			<h3>{{user.profile.nickname}}&nbsp;
+				<small>发表的评论</small>
+			</h3>
+		</div>
+		
+		{{#each activities}}
+			<div>
+				<h4><a href="/activities/{{_id}}">{{title}}</a><small class="pull-right">发布于&nbsp;{{formatdatetime createdAt}}</small></h4>
+			</div>
+			{{#each activityComments}}
+				{{> userCommentCard user=../../user comment=this}}
+			{{/each}}
+			<hr />
+		{{else}}
+			<p class="text-center">你还没发表过任何评论</p>
+		{{/each}}
+	</div>
+</template>

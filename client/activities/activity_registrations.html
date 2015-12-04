@@ -1,0 +1,107 @@
+<template name="activityRegistrations">
+  {{#with activity}}
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+      {{#if currentUser}}
+        <div class="control-label">
+          <div id="register-container" class="col-xs-12 text-center">
+              <h4>{{title}}</h4>
+              <small>活动签到现场</small>
+              {{#if userIsAuthor}}
+                <div id="qrcode" class="row" style=" text-align: -webkit-center;"></div>
+                {{qrcode}}
+              {{else}}
+                {{#if isInRole 'admin'}}
+                  <div id="qrcode" class="row" style=" text-align: -webkit-center;"></div>
+                  {{qrcode}}
+                {{/if}}
+              {{/if}}
+
+              {{#autoForm collection="Registrations" id="registrationForm" type="insert"}}
+                <fieldset>
+                </fieldset>
+                <ul style="padding: 10px;">
+                  <button type="submit" class="btn btn-primary hidden" id="registrationsSuccess">签到</button>
+                </ul>
+              {{/autoForm}}
+          </div>
+
+          <label class="control-label">已报名签到 {{enrolledRegisteredCount}} 人</label>
+          <div>
+            {{#each enrolledRegistered}}
+              <a href='/users/{{userId}}'><img class="enroll-img" src="{{headimgurl}}"> </a>
+            {{/each}}
+          </div>
+          <hr />
+
+          <label class="control-label">已报名未签到 {{enrolledUnregisteredCount}} 人</label>
+          <div>
+            {{#each enrolledUnregistered}}
+              <a href='/users/{{userId}}'> <img src="{{headimgurl}}" style="width: 35px; height: 35px; border-radius: 50%;"/> </a>
+            {{/each}}
+            <hr />
+          </div>
+
+          <label class="control-label">未报名 {{unenrolledRegisteredCount}} 人</label>
+          <div>
+            {{#each unenrolledRegistered}}
+              <a href='/users/{{userId}}'><img class="enroll-img" src="{{headimgurl}}"> </a>
+            {{/each}}
+            <hr />
+          </div>
+        </div>
+
+      {{else}}
+        {{> wechatLogin loginType=logintype}}
+        <div class="text-center col-xs-12">
+          <h4>签到前请先登录</h4>
+        </div>
+      {{/if}}
+
+      {{#if userIsAuthor}}
+      <a href="{{pathFor 'activityStatistics'}}" style="float: left;">点此进入活动统计表</a>
+      {{else}}
+        {{#if isInRole 'admin'}}
+        <a href="{{pathFor 'activityStatistics'}}" style="float: left;">点此进入活动统计表</a>
+        {{/if}}
+      {{/if}}
+      <!-- {{#if isInRole 'admin'}}
+        <a href="{{pathFor 'activityStatistics'}}" style="float: left;">点此进入活动统计表</a>
+      {{/if}} -->
+      </div>
+    </div>
+  </div>
+  {{/with}}
+</template>
+
+<template name="activityRegisterButton">
+  {{#with activity}}
+    {{#if currentUser}}
+
+      {{#if statusIs "ENROLLING"}}
+        {{#if isEnrolledIn this._id}}
+          {{#if userIsAuthor}}
+            <a href="{{pathFor 'activityRegistrations'}}">
+              <button id="begin-register-btn" class="register-btn navbar-fixed-bottom">启动签到流程</button>
+            </a>
+          {{else}}
+            {{#if isInRole 'admin'}}
+              <a href="{{pathFor 'activityRegistrations'}}">
+                <button id="begin-register-btn" class="register-btn navbar-fixed-bottom">启动签到流程</button>
+              </a>
+            {{/if}}
+          {{/if}}
+        {{/if}}
+      {{/if}}
+
+      {{#if statusIs "REGISTERING"}}
+        {{#if isRegistered}}
+          <a href="{{pathFor 'activityRegistrations'}}"><button class="register-btn navbar-fixed-bottom">进入签到页面</button></a>
+        {{else}}
+          <button id="scan-qrcode" class="register-btn navbar-fixed-bottom">扫一扫签到</button>
+        {{/if}}
+      {{/if}}
+    {{/if}}
+  {{/with}}
+</template>

@@ -1,0 +1,322 @@
+/*.list-group-item.active {
+  z-index: 2;
+  color: #fff;
+  background-color: #ccc;
+  border-color: white;
+  height: 50px;
+}*/
+.list-group-item-text, .list-group-item-heading {
+  white-space: nowrap;
+  width: 95%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+/*//daren   begin*/
+body {
+    font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    font-weight: normal;
+    /*margin: 3em 0;
+    padding: 0;*/
+}
+div {
+    display: block;
+}
+.darenPostList {
+    padding: 1px 10px 10px 10px;
+    width: 100%;
+    height: auto;
+    background: #F7F4F0;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.darenPostListGray {
+    opacity: 0.4;
+    padding: 1px 10px 10px 10px;
+    width: 100%;
+    height: auto;
+    /*background: #66FF66;*/
+    background: #F7F4F0;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+* {
+    -moz-box-sizing: border-box;
+    /*box-sizing: border-box;*/
+}
+.postImgBox {
+    padding: 0;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    background: #fff;
+}
+.postImg {
+    position: relative;
+    width: 100%;
+    height: auto;
+}
+.postImage {
+    width: 100%;
+    height: auto;
+    z-index: 1;
+    vertical-align: top;
+}
+.postInfo {
+    cursor: pointer;
+    position: absolute;
+    bottom: 0;
+    padding: 0px;
+    width: 100%;
+    min-height: 88px;
+    z-index: 2;
+}
+.postTitle {
+    margin: 0;
+    font-size: 20px;
+    color: #fff;
+    line-height: 140%;
+    font-family: '华文细黑', 'Microsoft YaHei', Helvetica, Arial;
+}
+h1 {
+    display: block;
+    /*font-size: 2em;*/
+    -webkit-margin-before: 0.67em;
+    -webkit-margin-after: 0.67em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    /*font-weight: bold;*/
+}
+.postTitleBor {
+    padding: 0 0 5px 0;
+    display: block;
+}
+.postTitle {
+    /*margin: 0;*/
+    font-size: 20px;
+    color: #fff;
+    line-height: 140%;
+    font-family: '华文细黑', 'Microsoft YaHei', Helvetica, Arial;
+}
+h1 {
+    font-weight: bold;
+    -webkit-margin-before: 0.67em;
+-webkit-margin-after: 0.67em;
+-webkit-margin-start: 0px;
+-webkit-margin-end: 0px;
+}
+
+.postTitleBor {
+    display: block;
+    white-space: nowrap;
+    width: 50%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+    background: -webkit-gradient(linear, 0 0, 0 bottom, from(rgba(0, 0, 0, 0)), to(rgba(0, 0, 0, 0.8)));
+    position: absolute;
+    bottom: 0;
+    padding: 10px;
+    width: 100%;
+    min-height: 70px;
+    z-index: 1;
+}
+.clear {
+    clear: both;
+}
+.darenActShadow {
+    height: 12px;
+    width: 100%;
+    background: #ece9e4;
+    box-shadow: inset 0px 1px 2px rgba(0, 0, 0, 0.1);
+}
+/*用户风格2begin*/
+.actUserInfo {
+    padding: 10px 0 0 10px;
+    width: 100%;
+    height: 56px;
+}
+.actUserPhoto {
+    float: left;
+    margin: 0 10px 0 0;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+.actUserNameBox {
+    float: left;
+    margin: -2px 0 0 0;
+    height: 36px;
+}
+.actUserName {
+    display: block;
+    font-size: 16px;
+    color: #ff5722;
+    font-family: '华文细黑', 'Microsoft YaHei', Helvetica, Arial;
+}
+.actUserLabel {
+    font-size: 11px;
+    color: #666;
+    font-family: '华文细黑', 'Microsoft YaHei', Helvetica, Arial;
+}
+
+/*details begin*/
+.blank {
+    margin-bottom: 19px;
+}
+.layoutM {
+    padding-bottom: 49px;
+}
+.sPostUserBox {
+    position: relative;
+    padding: 0 0 10px 0;
+    margin: 0 10px;
+    height: 56px;
+    border-bottom: 1px solid #eee5d6;
+}
+.sPostUserphoto {
+    position: absolute;
+    top: 5px;
+    left: 0;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    z-index: 3;
+}
+.sPostUserInfo {
+    padding: 5px 0 0 0;
+    margin: 0 0 0 64px;
+}
+.nm {
+    margin: 0;
+}
+.actUserName {
+    font-size: 16px;
+    color: #ff5722;
+    font-family: '华文细黑', 'Microsoft YaHei', Helvetica, Arial;
+}
+.actUserLabel {
+    font-size: 11px;
+    color: #666;
+    font-family: '华文细黑', 'Microsoft YaHei', Helvetica, Arial;
+}
+.sActConT {
+    margin: 10px 0 0 0;
+    padding: 0 10px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #352f2e;
+    font-family: '华文细黑', 'Microsoft YaHei', Helvetica, Arial;
+}
+
+.sPostAConText {
+    padding: 20px 10px;
+}
+.sPostAConTextCon {
+    margin: 0 0 20px 0;
+    font-size: 16px;
+    color: #333;
+    font-weight: normal;
+    line-height: 175%;
+    font-family: '华文细黑', 'Microsoft YaHei', Helvetica, Arial;
+}
+p {
+    display: block;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+}
+ul, li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
+ul, menu, dir {
+    display: block;
+    /*list-style-type: disc;*/
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    -webkit-padding-start: 40px;
+}
+.sActList li {
+    padding: 0;
+    height: 44px;
+    color: #666;
+    font-size: 15px;
+    font-family: '华文细黑', 'Microsoft YaHei', Helvetica, Arial;
+    line-height: 44px;
+    background: #F7F4EF;
+    border-bottom: 1px solid #ded8d0;
+    border-top: 1px solid #fff;
+}
+.sActListIcon {
+    float: left;
+    margin-top: 14px;
+    margin-bottom: 8px;
+    margin-right: 12px;
+    margin-left: 12px;
+    height: 22px;
+}
+.sActBtnOver {
+    position: fixed;
+    bottom: 68px;
+    left: 0px;
+    width: 100%;
+    height: 49px;
+    font-size: 18px;
+    color: #fff;
+    line-height: 49px;
+    text-align: center;
+    background: #999;
+    border: 0px;
+    -webkit-writing-mode: horizontal-tb;
+}
+
+/* 右上角斜角 */
+.pic{
+  position:relative;;
+  overflow:hidden;
+}
+.tf{
+  position:absolute;
+  display: inline-block;
+  top: 27px;
+  right: -32px;
+  width: 150px;
+  height: 30px;
+  text-align: center;
+  display: block;
+  overflow: hidden;
+  line-height: 30px;
+  font-weight: 300;
+  color: #fff;
+  box-shadow: 0px 0px 10px rgba(0,0,0,0.2), inset 0px 5px 30px rgba(255,255,255,0.2);
+  transform: rotate(45deg);
+  -ms-transform: rotate(45deg); /* ie9 */
+  -webkit-transform: rotate(45deg); /* safari and chrome */
+  -moz-transform: rotate(45deg); /* firefox */
+  -o-transform: rotate(45deg); /* opera */
+}
+
+.enroll {
+  background-color: #51C332;
+}
+
+.registration {
+  background-color: #d93131;
+}
+
+.closed {
+  background-color: #3F3F46;
+}
+
+.cancel {
+  background-color: #3F3F46;
+}

@@ -1,0 +1,64 @@
+<template name="activityDetail">
+  {{#with activity}}
+  <div class="">
+    <div class="sPostACon">
+      {{#if userIsAuthor}}
+        <a class="btn btn-xs btn-success closeActicity" href="#" role="button" style="float: right; margin-right: 10px; margin-left: 5px; margin-top: 8px;">结束活动</a>
+        {{#if statusIs "CANCEL"}}
+          <a class="btn btn-xs btn-success recoverActicity"  href="#" role="button" style="float: right; margin-top: 8px;">恢复活动</a>
+        {{else}}
+          <a class="btn btn-xs btn-success cancelActicity"  href="#" role="button" style="float: right; margin-top: 8px;">取消活动</a>
+        {{/if}}
+        <a class="btn btn-xs btn-success"  href="{{pathFor 'activityEdit'}}" role="button" style="float: right; margin-top: 8px; margin-right: 5px;">编辑活动</a><br>
+      {{/if}}
+      <h1 class="sActConT" style="display: inline-flex;">{{title}}</h1>
+      <div class="sPostAConText">
+        <div class="sPostAConTextCon">
+          <span> </span>
+          <div>
+            <div>
+              <p>
+                <span style="line-height: 19.25px; widows: 1;">{{{str2html desc}}}</span>
+                <br>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ul class="sActList" style="padding-left: 0px;">
+        <li>
+            <span class="sActListIcon glyphicon glyphicon-calendar"></span>
+            <span>时间：</span>
+            <span>{{formatdatetime time}}</span>
+        </li>
+        <li>
+            <span class="sActListIcon glyphicon glyphicon-globe"></span>
+            <span>名额：</span>
+            <span>{{limit}}</span>
+        </li>
+        <li>
+            <span class="sActListIcon glyphicon glyphicon-usd"></span>
+            <span>费用：</span>
+            <span>{{fee}}</span>
+        </li>
+        <li id="where">
+            <span class="sActListIcon glyphicon glyphicon-map-marker"></span>
+            <span>坐标：</span>
+            <span>{{where}}</span>
+        </li>
+        <li style="padding-left: 10px; display: none;">
+            {{#if userIsAuthor}}
+              <a class="btn btn-sm btn-default" href="{{pathFor 'activityEdit'}}" role="button" >编辑</a>
+              {{#if statusIs "CANCEL"}}
+                <a class="btn btn-sm btn-primary recoverActicity"  href="#" role="button">恢复活动</a>
+              {{else}}
+                <a class="btn btn-sm btn-primary cancelActicity"  href="#" role="button">取消活动</a>
+              {{/if}}
+              <a class="btn btn-sm btn-primary closeActicity"  href="#" role="button">结束活动</a>
+            {{/if}}
+        </li>
+    </ul>
+  </div>
+  {{/with}}
+</template>

@@ -1,0 +1,30 @@
+<template name="activityEnrollments">
+  {{#with activity}}
+    {{#if currentUser}}
+      {{#if isEnrolledIn this._id}}
+        <div id="myAlert" class="alert alert-success">
+          <a href="#" class="close" data-dismiss="alert"> &times;</a>
+          <strong>你已成功报名</strong>,
+          <span> 已有 <span class="tip_font_orange">{{enrollmentsCount}}</span> 人报名。 </span>
+        </div>
+        <a class="btn btn-sm btn-default delete-enrollment" href="#" role="button">取消报名</a><br>
+      {{else}}
+        {{#if statusIs "ENROLLING"}}
+          {{#autoForm collection="Enrollments" id="enrollmentForm" type="insert"}}
+            <button class="enroll-btn navbar-fixed-bottom" type="submit">我要报名</button>
+          {{/autoForm}}
+        {{/if}}
+      {{/if}}
+    {{/if}}
+  {{/with}}
+
+  <div class="control-label">
+    <label class="control-label">已报名的人</label>
+    <div>
+      {{#each enrollments}}
+        <a href='/users/{{userId}}'> <img src="{{headimgurl}}" style="width: 35px; height: 35px; border-radius: 50%;"/> </a>
+      {{/each}}
+      <hr />
+    </div>
+  </div>
+</template>

@@ -1,0 +1,26 @@
+<template name="activityShow">
+  {{#with activity}}
+    <a href="{{pathFor 'activityShow'}}">
+    {{> activityCard activity=this likes=../likes}}
+    </a>
+    {{> activityDetail activity=this}}
+
+    {{#unless currentUser}}
+      <button id="login-btn" class="enroll-btn navbar-fixed-bottom" type="submit">请用微信登录</button>
+    {{/unless}}
+
+    <div class="container">
+      {{#if hasPackage "ActivityEnrollments"}}
+        {{> activityEnrollments activity=this enrollments=../enrollments}}
+      {{/if}}
+
+      {{#if hasPackage "ActivityComments"}}
+        {{> activityComments activity=this comments=../comments}}
+      {{/if}}
+
+      {{#if hasPackage "ActivityRegistrations"}}
+        {{> activityRegisterButton activity=this}}
+      {{/if}}
+    </div>
+  {{/with}}
+</template>

@@ -1,0 +1,21 @@
+.enroll-img {
+	width: 37px;
+	height: 37px;
+	border-radius: 50%;
+}
+
+.color {
+	display: block;
+	overflow: auto;
+}
+
+#begin-register-btn {
+	z-index: 1000;
+}
+
+#begin-register-btn {
+	z-index: 1000;
+}
+/*.register-btn {
+	opacity: 0.3;
+}*/

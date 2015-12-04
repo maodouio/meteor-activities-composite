@@ -1,0 +1,14 @@
+<template name="userActivities">
+	<div class="page-header text-center">
+		<h3>{{user.profile.nickname}}&nbsp;
+		  <small>发布的活动</small>
+		</h3>
+	</div>
+	{{#each activities}}
+		<a href="{{pathFor 'activityShow'}}"> 
+			{{>activityCard activity=this}} 
+		</a>
+	{{else}}
+		<p class="text-center">还没有发布任何活动</p>
+	{{/each}}
+</template>

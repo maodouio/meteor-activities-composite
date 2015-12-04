@@ -1,0 +1,14 @@
+<template name="userLikes">
+	<div class="page-header text-center">
+		<h3>{{user.profile.nickname}}&nbsp;
+		  <small>点过的赞</small>
+		</h3>
+	</div>
+	{{#each activities}}
+		<a href="{{pathFor 'activityShow'}}"> 
+			{{>activityCard activity=this}} 
+		</a>
+	{{else}}
+		<p class="text-center">你还没有任何点赞哦</p>
+	{{/each}}
+</template>

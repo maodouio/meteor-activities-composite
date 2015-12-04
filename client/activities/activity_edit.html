@@ -1,0 +1,19 @@
+<template name="activityEdit">
+  <div class="container" style="padding-left: 5px; padding-right: 5px;">
+    <h4>编辑活动</h4>
+    {{#autoForm collection="Activities" doc=this id="activityFormUpdate" type="update"}}
+    <fieldset>
+        {{> afQuickField name='title'}}
+        {{> afQuickField name='desc' rows=6}}
+        {{> afQuickField name="picture"}}
+        {{> afQuickField name='time'}}
+        {{> afQuickField name='where'}}
+        {{> afQuickField name='limit'}}
+        {{> afQuickField name='fee'}}
+        {{> afQuickField name='createdAt'}}
+    </fieldset>
+    <button type="submit" class="btn btn-primary">更新</button>
+    <a class="btn btn-link" role="button" href="{{pathFor 'activitiesIndex'}}">返回</a>
+    {{/autoForm}}
+  </div>
+</template>

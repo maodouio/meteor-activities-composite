@@ -1,0 +1,36 @@
+<template name="activityNew">
+    {{#if currentUser}}
+        {{#with currentUser}}
+            <a style="float: right; padding-top: 5px;" href='/users/{{userId}}'>
+                <img alt="image" src="{{profile.headimgurl}}" class="actUserPhoto" />
+            </a>
+        {{/with}}
+          <div class="container" style="padding-left: 5px; padding-right: 5px;">
+            <h4 style="margin-top: 50px;"><b>发布新的活动</b></h4>
+            {{#autoForm collection="Activities" id="activityForm" type="insert"}}
+							<fieldset>
+								{{> afQuickField name='title'}}
+								{{> afQuickField name='desc' rows=6}}
+								{{> afQuickField name="picture"}}
+								{{> afQuickField name='time'}}
+								{{> afQuickField name='where'}}
+								{{> afQuickField name='limit'}}
+								{{> afQuickField name='fee'}}
+							</fieldset>
+							<ul style="float: right;">
+								<button type="submit" class="btn btn-primary">提交</button>
+								<a href="{{pathFor 'activitiesIndex'}}"><button type="submit" class="btn btn-primary">返回</button></a>
+							</ul>
+        		{{/autoForm}}
+          </div>
+    {{else}}
+       {{> wechatLogin loginType='activityNew'}}
+       <div class="text-center" style="padding-bottom: 80%;">
+        <h4>新建活动前请先登录</h4>
+       </div>
+    {{/if}}
+</template>
+
+<template name="myFilePreview">
+  <img src="{{file.url}}" alt="{{file.original.name}}" width="150px;"/>
+</template>

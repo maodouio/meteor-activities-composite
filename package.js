@@ -11,6 +11,7 @@ Package.describe({
 });
 
 Package.onUse(function(api) {
+  api.versionsFrom("1.0.2.1");
   // packages
   api.use('iron:router@1.0.12', ["server", "client"]);
   api.use('reywood:publish-composite@1.4.2', "server");

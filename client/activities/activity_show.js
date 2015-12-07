@@ -46,7 +46,7 @@ Template.activityShow.onRendered(function() {
 
     wx.config({
       debug: false,
-      appId: 'wx433268b6e0835231',
+      appId: result.appId,
       timestamp: result.timestamp,
       nonceStr: result.nonceStr,
       signature: result.signature,

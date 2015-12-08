@@ -35,25 +35,32 @@ Template.activityRegistrations.helpers({
 });
 
 Template.activityRegistrations.onRendered(function () {
-  var qrcodeUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?" +
-    "appid=wx433268b6e0835231&" +
-    "redirect_uri=http://x-lab.maodou.io/wechatLogin&" +
-    "response_type=code&" +
-    "scope=snsapi_userinfo&" +
-    "state=" + this.data.logintype + "#wechat_redirect";
-
-  $('#qrcode').qrcode({
-    "render": "div",
-    "size": 400,
-    "color": "#000",
-    "text": qrcodeUrl
+  Meteor.call('getAppId', function(error, success) { 
+    if (error) { 
+      console.log('error', error); 
+    } 
+    if (success) { 
+       var qrcodeUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?" +
+        "appid=" + success + "&" +
+        "redirect_uri=" + window.location.origin + "/wechatLogin&" +
+        "response_type=code&" +
+        "scope=snsapi_userinfo&" +
+        "state=" + this.data.logintype + "#wechat_redirect";
+    
+      $('#qrcode').qrcode({
+        "render": "div",
+        "size": 400,
+        "color": "#000",
+        "text": qrcodeUrl
+      });
+      // auto register
+      var result = Registrations.find({userId: Meteor.userId(), activityId: this.data.activity._id}).fetch();
+      console.log("result --- ", typeof result);
+      if (result.length === 0) {
+        $("#registrationsSuccess").trigger("click");
+      }
+    } 
   });
-  // auto register
-  var result = Registrations.find({userId: Meteor.userId(), activityId: this.data.activity._id}).fetch();
-  console.log("result --- ", typeof result);
-  if (result.length === 0) {
-    $("#registrationsSuccess").trigger("click");
-  }
 });
 
 AutoForm.hooks({

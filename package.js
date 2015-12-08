@@ -23,6 +23,7 @@ Package.onUse(function(api) {
   api.use('cfs:gridfs@0.0.33', ["server", "client"]);
   api.use('cfs:filesystem@0.1.2', ["server", "client"]);
   api.use('froatsnook:request@2.64.0', 'server');
+  api.use('easy:search@2.0.5', ['server', 'client']);
 
   api.use('maodouio:autoform-file@1.0.5', ["server", "client"]);
   // api.use('maodouio:activity-comments@0.0.1', ["server", "client"]);
@@ -32,7 +33,9 @@ Package.onUse(function(api) {
   api.use(['minimongo', 'mongo-livedata', 'templating'], 'client');
 
   // client
+  api.addFiles('client/activities/activities_index.css', 'client');
   api.addFiles('client/activities/activities_index.html', 'client');
+  api.addFiles('client/activities/activities_index.js', 'client');
 
   api.addFiles('client/activities/activity_card.html', 'client');
   api.addFiles('client/activities/activity_card.js', 'client');

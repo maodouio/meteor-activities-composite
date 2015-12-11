@@ -26,22 +26,24 @@ Template.activityDetail.helpers({
 
 Template.activityDetail.events ({
   'click .cancelActicity': function( ) {
-    console.log('活动已取消!');
-    Activities.update({_id: this._id}, {$set: {"status": "CANCEL"}});
+    if(confirm("你确定要取消这个活动吗?")) {
+      console.log('活动已取消!');
+      Activities.update({_id: this._id}, {$set: {"status": "CANCEL"}});
 
-    if (Session.get("hasPackageActivityNotifications"))
-    {
-      var enrollments = Enrollments.find().fetch();
-      var list = [];
-      _.each(enrollments, function(e) {
-        console.log("e.userId = ", e.userId);
-        list.push(e.userId);
-      });
-      moment.lang('zh-cn');
-      var time = moment(this.time).format('LLL');
-      console.log('thme', time);
-      var content = "温馨提示: 你报名的于" + time + "分" +  "举办的活动[" + this.title + "]已取消!";
-      Meteor.call("multiSendMessage", list, content);
+      if (Session.get("hasPackageActivityNotifications"))
+      {
+        var enrollments = Enrollments.find().fetch();
+        var list = [];
+        _.each(enrollments, function(e) {
+          console.log("e.userId = ", e.userId);
+          list.push(e.userId);
+        });
+        moment.lang('zh-cn');
+        var time = moment(this.time).format('LLL');
+        console.log('thme', time);
+        var content = "【活动取消通知】“" + this.title + "” 活动已取消，特此通知";
+        Meteor.call("multiSendMessage", list, content);
+      }
     }
   },
   'click .recoverActicity': function( ) {
@@ -49,7 +51,9 @@ Template.activityDetail.events ({
     Activities.update({_id: this._id}, {$set: {"status": "ENROLLING"}});
   },
   'click .closeActicity': function( ) {
-    console.log('活动已结束!');
-    Activities.update({_id: this._id}, {$set: {"status": "CLOSED"}});
+    if(confirm("你确定要结束这个活动吗?")) {
+      console.log('活动已结束!');
+      Activities.update({_id: this._id}, {$set: {"status": "CLOSED"}});
+    }
   }
 });

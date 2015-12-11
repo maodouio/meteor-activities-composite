@@ -6,11 +6,7 @@
   {{/each}}
   {{#autoForm collection="Comment.collection" id="commentForm" type="insert"}}
     {{> afQuickField type="textarea" name='body' placeholder='在这里输入您的评论' label='发表评论'}}
-    <!-- {{#if currentUser}} -->
-      <button class="btn btn-primary" type="submit">提交</button>
-    <!-- {{else}}
-      <button class="btn btn-primary" type="submit">请登录微信后再提交评论</button>
-    {{/if}} -->
+    <button class="btn btn-primary" type="submit">提交</button>
   {{/autoForm}}
 </template>
 

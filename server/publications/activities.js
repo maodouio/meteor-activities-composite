@@ -1,9 +1,45 @@
+Meteor.publish('activityEdit', function(activityId) {
+  return Enrollments.find({activityId: activityId});
+});
+
+
+
 Meteor.publish('images', function() {
   return Images.find();
 });
 
-Meteor.publish('activity', function(id) {
-  return Activities.find({_id: id});
+Meteor.publish('imageUploaded', function() {
+  // Find the just uploaded image
+  return Images.find({}, {sort: {uploadedAt: -1}, limit: 1});
+});
+
+Meteor.publish('firstUploaded', function () {
+  return Images.find({}, {sort: {uploadedAt: 1}, limit: 1});
+});
+
+// Meteor.publish('activity', function(id) {
+//   return Activities.find({_id: id});
+// });
+
+Meteor.publishComposite("activity", function(id) {
+  return {
+    find: function() {
+      return Activities.find({_id: id});
+    },
+    children: [
+      {
+        find: function(activity) {
+          // Find activity picture
+          return Images.find({_id: activity.picture});
+        }
+      },
+      {
+        find: function(activity) {
+          return Meteor.users.find({_id: activity.userId}, { fields: { username: 1, profile: 1 } });
+        }
+      },
+    ]
+  }
 });
 
 Meteor.publishComposite("activitiesComposite", function() {
@@ -13,8 +49,14 @@ Meteor.publishComposite("activitiesComposite", function() {
     },
     children: [
       {
-        find: function() {
-          return Meteor.users.find({}, { fields: { username: 1, profile: 1 } });
+        find: function(activity) {
+          // Find activity picture
+          return Images.find({_id: activity.picture});
+        }
+      },
+      {
+        find: function(activity) {
+          return Meteor.users.find({_id: activity.userId}, { fields: { username: 1, profile: 1 } });
         }
       },
       {
@@ -48,6 +90,12 @@ Meteor.publishComposite("activityComposite", function(activityId) {
       return Activities.find({_id: activityId});
     },
     children: [
+      {
+        find: function(activity) {
+          // Find activity picture
+          return Images.find({_id: activity.picture});
+        }
+      },
       {
         find: function(activity) {
             // Find user that authored comment.
@@ -111,6 +159,12 @@ Meteor.publishComposite("userActivitiesComposite", function(userId) {
          }
        }
      },
+     {
+        find: function(activity) {
+          // Find activity picture
+          return Images.find({_id: activity.picture});
+        }
+      },
      {
        find: function(activity) {
          if (typeof Enrollments !== "undefined") {

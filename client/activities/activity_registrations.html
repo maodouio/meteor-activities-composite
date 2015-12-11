@@ -43,7 +43,7 @@
             <hr />
           </div>
 
-          <label class="control-label">未报名 {{unenrolledRegisteredCount}} 人</label>
+          <label class="control-label">空降 {{unenrolledRegisteredCount}} 人</label>
           <div>
             {{#each unenrolledRegistered}}
               <a href='/users/{{userId}}'><img class="enroll-img" src="{{headimgurl}}"> </a>
@@ -51,24 +51,22 @@
             <hr />
           </div>
         </div>
-
       {{else}}
-        {{> wechatLogin loginType=logintype}}
+        {{> wechatLogin loginType=../logintype}}
         <div class="text-center col-xs-12">
           <h4>签到前请先登录</h4>
         </div>
       {{/if}}
 
-      {{#if userIsAuthor}}
-      <a href="{{pathFor 'activityStatistics'}}" style="float: left;">点此进入活动统计表</a>
-      {{else}}
-        {{#if isInRole 'admin'}}
-        <a href="{{pathFor 'activityStatistics'}}" style="float: left;">点此进入活动统计表</a>
+      {{#if hasPackage "ActivityStatistics"}}
+        {{#if userIsAuthor}}
+          <a href="{{pathFor 'activityStatistics'}}" style="float: left;">点此进入活动统计表</a>
+        {{else}}
+          {{#if isInRole 'admin'}}
+            <a href="{{pathFor 'activityStatistics'}}" style="float: left;">点此进入活动统计表</a>
+          {{/if}}
         {{/if}}
       {{/if}}
-      <!-- {{#if isInRole 'admin'}}
-        <a href="{{pathFor 'activityStatistics'}}" style="float: left;">点此进入活动统计表</a>
-      {{/if}} -->
       </div>
     </div>
   </div>
@@ -78,7 +76,6 @@
 <template name="activityRegisterButton">
   {{#with activity}}
     {{#if currentUser}}
-
       {{#if statusIs "ENROLLING"}}
         {{#if isEnrolledIn this._id}}
           {{#if userIsAuthor}}

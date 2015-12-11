@@ -18,22 +18,31 @@ AutoForm.hooks({
       }
     },
     onSuccess: function (operation, result, template) {
-
       console.log('New activitie inserted successfully!');
+
       if (Session.get("hasPackageActivityNotifications"))
       {
-        var picurl = $('.form-group div > img')[0].src;
-      //  活动创建发送图文消息
-        var content = {
-          title: "【新提醒】有人发布了一个活动 ",
-          description: ">>点击查看<<",
-          url: "http://x-lab.maodou.io/activities/"+ result,
-          picurl: picurl
-        };
-        var list = [];
-        Meteor.call('getAllUserId', function(error, result) {
-          list = result;
-          Meteor.call("multiSendNews", list, content);
+        var firstPicture = Images.findOne({}, {sort: {uploadedAt: 1}});
+        var firstPicUrl = window.location.origin + "/cfs/files/images/" + firstPicture._id;
+        var picurl = $('.form-group div > img')[0] ? $('.form-group div > img')[0].src : firstPicUrl;
+        var atitle = "";
+        var time = "";
+        var where = "";
+        Meteor.call('getActivityInfo', result, function(error, r) {
+          atitle = r.title;
+          time = r.time;
+          where = r.where;
+          var content = {
+            title: "【新活动】" + atitle,
+            description: "",
+            time: moment(time).format("YYYY-MM-DD HH:MM"),
+            where: where,
+            // where: where.replace("T", " "),
+            url: window.location.origin + "/activities/"+ result,
+            picurl: picurl
+          };
+
+          Meteor.call("multiSendNews", content);
         });
       }
       Router.go('activitiesIndex', {_id: result});

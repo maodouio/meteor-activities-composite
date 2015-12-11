@@ -15,7 +15,7 @@ Template.activityShow.events ({
 Template.activityShow.onRendered(function() {
 	var share_config = {
        "share": {
-          "imgUrl": this.data.activity.headimgurl,
+          "imgUrl": $(".postImg > img")[0].src,
           "desc" : this.data.activity.desc,
           "title" : this.data.activity.title,
           "link": window.location.href,
@@ -33,7 +33,7 @@ Template.activityShow.onRendered(function() {
 
   if (current.host === "") {
     // route 过来的地址，微信只能获取到 /activities 截止，后面的取不到了
-    url = window.location.origin + "/activities";
+    url = window.location.origin + "/activities/";
   } else {
     // 刷新页面或者新建文章后跳转的页面，微信获取的是完整地址
     url = window.location.href;
@@ -42,10 +42,7 @@ Template.activityShow.onRendered(function() {
   // 根据不同情况传递不同的地址获取 signature
   Meteor.call("signature", url, function(error, result) {
     console.log(result.signature);
-    Meteor.call("printLog", "appId :", result.appId);
-    Meteor.call("printLog", "timestamp :", result.timestamp);
-    Meteor.call("printLog", "nonceStr :", result.nonceStr);
-    Meteor.call("printLog", "signature :", result.signature);
+    Meteor.call("printLog", result.signature);
 
     wx.config({
       debug: false,

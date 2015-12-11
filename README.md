@@ -1,1 +1,0 @@
-## Maodou.io activities-composite package

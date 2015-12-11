@@ -5,10 +5,10 @@
 		</h3>
 	</div>
 	{{#each activities}}
-		<a href="{{pathFor 'activityShow'}}"> 
-			{{>activityCard activity=this}} 
+		<a href="{{pathFor 'activityShow'}}">
+			{{>activityCard activity=this}}
 		</a>
 	{{else}}
-		<p class="text-center">你还没有任何点赞哦</p>
+		<p class="text-center">还没有任何点赞哦</p>
 	{{/each}}
 </template>

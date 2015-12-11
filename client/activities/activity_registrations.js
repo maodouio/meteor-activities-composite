@@ -35,32 +35,22 @@ Template.activityRegistrations.helpers({
 });
 
 Template.activityRegistrations.onRendered(function () {
-  Meteor.call('getAppId', function(error, success) { 
-    if (error) { 
-      console.log('error', error); 
-    } 
-    if (success) { 
-       var qrcodeUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?" +
-        "appid=" + success + "&" +
-        "redirect_uri=" + window.location.origin + "/wechatLogin&" +
-        "response_type=code&" +
-        "scope=snsapi_userinfo&" +
-        "state=" + this.data.logintype + "#wechat_redirect";
-    
-      $('#qrcode').qrcode({
-        "render": "div",
-        "size": 400,
-        "color": "#000",
-        "text": qrcodeUrl
-      });
-      // auto register
-      var result = Registrations.find({userId: Meteor.userId(), activityId: this.data.activity._id}).fetch();
-      console.log("result --- ", typeof result);
-      if (result.length === 0) {
-        $("#registrationsSuccess").trigger("click");
-      }
-    } 
+  var loginType = this.data.logintype;
+  var qrcodeUrl = window.location.href;
+
+  $('#qrcode').qrcode({
+    "size": 400,
+    "color": "#000",
+    "text": qrcodeUrl
   });
+
+  // auto register
+  var userId = Meteor.userId();
+  var activityId = this.data.activity._id;
+  var result = Registrations.find({userId: userId, activityId: activityId}).fetch();
+  if (result.length === 0) {
+    $("#registrationsSuccess").trigger("click");
+  }
 });
 
 AutoForm.hooks({
@@ -93,8 +83,6 @@ AutoForm.hooks({
     },
     onSuccess: function(operation, result,template) {
       console.log('签到成功!');
-      // Router.go('/activities/'+doc.activityId+'/registrations/');
-      console.log('this ----', this.insertDoc.activityId);
     },
     onError: function(operation, error, template) {
       console.log('签到失败');
@@ -144,18 +132,8 @@ Template.activityRegisterButton.events({
       });
 
       // 文本消息
-      // var content = "[" + this.title + "]活动就要开始啦，你可以入场签到了。";
-      // Meteor.call("multiSendMessage", list, content);
-      var picurl  = $('.pic .postImg > img')[0].src;
-      var description = "您报名的活动【" + this.title + "】\n 已经开始签到了，请前往签到处扫描二维码。";
-      var content = {
-        title: "【签到进行中...】",
-        // description: this.desc,
-        description: description,
-        url: "http://x-lab.maodou.io/activities/"+ this._id,
-        picurl: picurl
-      };
-      Meteor.call("multiSendNews", list, content);
+      var content = "【活动开始签到】“" + this.title + "”活动已开始，请大家扫码" + "http://x-lab.maodou.io/activities/" + this._id;
+      Meteor.call("multiSendMessage", list, content);
     }
     this.render();
   },

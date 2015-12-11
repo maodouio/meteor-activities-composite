@@ -17,10 +17,7 @@
           <span> </span>
           <div>
             <div>
-              <p>
-                <span style="line-height: 19.25px; widows: 1;">{{{str2html desc}}}</span>
-                <br>
-              </p>
+              <p><span style="line-height: 19.25px; widows: 1;">{{{str2html desc}}}</span><br></p>
             </div>
           </div>
         </div>
@@ -30,7 +27,7 @@
         <li>
             <span class="sActListIcon glyphicon glyphicon-calendar"></span>
             <span>时间：</span>
-            <span>{{formatdatetime time}}</span>
+            <span>{{formatdatetime1 time}}</span>
         </li>
         <li>
             <span class="sActListIcon glyphicon glyphicon-globe"></span>
@@ -44,7 +41,7 @@
         </li>
         <li id="where">
             <span class="sActListIcon glyphicon glyphicon-map-marker"></span>
-            <span>坐标：</span>
+            <span>地址：</span>
             <span>{{where}}</span>
         </li>
         <li style="padding-left: 10px; display: none;">

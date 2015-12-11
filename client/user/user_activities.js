@@ -1,10 +1,4 @@
 Template.userActivities.helpers({
-  file: function () {
-    console.log('thisis:', this);
-    var id = this.picture;
-    console.log('id:', id);
-    return Images.findOne({_id: id});
-  },
   upCount: function () {
     console.log("this.likes().fetch()", this.likes().fetch());
     return this.likes().fetch().length;

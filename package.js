@@ -49,8 +49,6 @@ Package.onUse(function(api) {
   api.addFiles("client/activities/activity_registrations.css", "client");
   api.addFiles("client/activities/activity_registrations.html", "client");
   api.addFiles("client/activities/activity_registrations.js", "client");
-  // api.addFiles("client/activities/activity_summary.html", "client");
-  // api.addFiles("client/activities/activity_summary.js", "client");
 
   api.addFiles("client/user/user_activities.html", "client");
   api.addFiles("client/user/user_activities.js", "client");
@@ -71,8 +69,6 @@ Package.onUse(function(api) {
 
 
   api.addFiles('lib/collections.js', ['server', 'client']);
-  // api.addFiles('lib/commentable.js', ['server', 'client']);
-  // api.addFiles('lib/likeable.js', ['server', 'client']);
   api.addFiles('lib/routes.js', ['server', 'client']);
   api.addFiles('lib/helpers.js', ['client']);
 

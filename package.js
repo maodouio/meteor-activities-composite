@@ -28,7 +28,7 @@ Package.onUse(function(api) {
   // api.use('maodouio:activity-likes@0.0.1', ["server", "client"]);
 
   // template
-  api.use(['minimongo', 'mongo-livedata', 'templating'], 'client');
+  api.use(['minimongo@1.0.10', 'mongo-livedata@1.0.9', 'templating@1.1.5'], 'client');
 
   // client
   api.addFiles('client/activities/activities_index.html', 'client');

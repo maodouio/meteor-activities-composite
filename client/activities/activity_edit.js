@@ -26,7 +26,7 @@ AutoForm.hooks({
           console.log("e.userId = ", e.userId);
           list.push(e.userId);
         });
-        var content = "【活动已更新】“" + this.currentDoc.title + "”活动已更新，查看详情" + "http://x-lab.maodou.io/activities/" + this.docId;
+        var content = "【活动已更新】“" + this.currentDoc.title + "”活动已更新，查看详情" + "http://mbaas.maodou.io/activities/" + this.docId;
         console.log("debug====>",content);
         console.log(list);
         Meteor.call("multiSendMessage", list, content);

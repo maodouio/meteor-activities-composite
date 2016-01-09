@@ -77,8 +77,8 @@ Package.onUse(function(api) {
   api.addFiles('server/permissions/images.js', 'server');
   api.addFiles('server/publications/activities.js', 'server');
   // methods must before fixtures
-  // api.addFiles('server/seeds/methods.js', 'server');
-  // api.addFiles('server/seeds/fixtures.js', 'server');
+  api.addFiles('server/seeds/methods.js', 'server');
+  api.addFiles('server/seeds/fixtures.js', 'server');
 
   // export
   api.export('Activities');

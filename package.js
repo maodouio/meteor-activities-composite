@@ -22,6 +22,7 @@ Package.onUse(function(api) {
   api.use('cfs:gridfs@0.0.33', ["server", "client"]);
   api.use('cfs:filesystem@0.1.2', ["server", "client"]);
   api.use('froatsnook:request@2.64.0', 'server');
+  api.use('iron:location@1.0.11', 'server');
 
   api.use('maodouio:autoform-file@1.0.5', ["server", "client"]);
   // api.use('maodouio:activity-comments@0.0.1', ["server", "client"]);

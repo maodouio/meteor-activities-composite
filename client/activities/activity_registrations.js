@@ -132,7 +132,7 @@ Template.activityRegisterButton.events({
       });
 
       // 文本消息
-      var content = "【活动开始签到】“" + this.title + "”活动已开始，请大家扫码" + "http://mbaas.maodou.io/activities/" + this._id;
+      var content = "【活动开始签到】“" + this.title + "”活动已开始，请大家扫码" + "http://msaas.maodou.io/activities/" + this._id;
       Meteor.call("multiSendMessage", list, content);
     }
     this.render();

@@ -1,6 +1,6 @@
 Package.describe({
   name: 'maodouio:activities-composite',
-  version: '0.1.2',
+  version: '0.1.4',
   // Brief, one-line summary of the package.
   summary: 'meteor package for maodouio:activities-composite',
   // URL to the Git repository containing the source code for this package.

@@ -14,11 +14,11 @@
       <h1 class="sActConT" style="display: inline-flex;">{{title}}</h1>
       <div class="sPostAConText">
         <div class="sPostAConTextCon">
-          <span> </span>
+          {{#if userIsAuthor}}
+          <button id="send_msg_btn" type="button" class="btn btn-warning" style="float: right;">发送消息</button>
+          {{/if}}
           <div>
-            <div>
-              <p><span style="line-height: 19.25px; widows: 1;">{{{str2html desc}}}</span><br></p>
-            </div>
+            <p><span style="line-height: 19.25px; widows: 1;">{{{str2html desc}}}</span><br></p>
           </div>
         </div>
       </div>

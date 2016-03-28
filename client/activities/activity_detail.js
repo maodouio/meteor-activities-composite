@@ -55,5 +55,18 @@ Template.activityDetail.events ({
       console.log('活动已结束!');
       Activities.update({_id: this._id}, {$set: {"status": "CLOSED"}});
     }
+  },
+  'click #send_msg_btn': function() {
+    var fromUser = Meteor.userId();
+    var toUser = [];
+    _.each(Enrollments.find().fetch(), function(enrollment) {
+      toUser.push(enrollment.userId);
+    });
+    var data = {
+      fromUser		: fromUser,
+      toUser			: toUser,
+      type        : "multi"
+    }
+    Modal.show("chatWindow", data);
   }
 });

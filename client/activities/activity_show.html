@@ -3,7 +3,7 @@
     <a href="{{pathFor 'activityShow'}}">
     {{> activityCard activity=this likes=../likes}}
     </a>
-    {{> activityDetail activity=this}}
+    {{> activityDetail activity=this enrollments=../enrollments}}
 
     {{#unless currentUser}}
       <button id="login-btn" class="enroll-btn navbar-fixed-bottom" type="submit">请用微信登录</button>

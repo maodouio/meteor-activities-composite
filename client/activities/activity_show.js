@@ -41,11 +41,13 @@ Template.activityShow.onRendered(function() {
     // route 过来的地址，微信只能获取到 /activities 截止，后面的取不到了
     // url = window.location.origin + "/activities/";
     url ="http://devtest.maodou.io/activities";
+    Meteor.call("printLog", "1: url =  :", url);
     console.log('1: url = ', url);
   } else {
     // 刷新页面或者新建文章后跳转的页面，微信获取的是完整地址
     url = window.location.href;
     console.log('2: url = ', url);
+    Meteor.call("printLog", "2: url =  :", url);
   }
 
   /*

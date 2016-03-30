@@ -13,6 +13,9 @@ Template.activityShow.events ({
 });
 
 Template.activityShow.onRendered(function() {
+  console.log(this.data);
+  console.log(this.data.activity);
+
 	var share_config = {
        "share": {
           "imgUrl": $(".postImg > img")[0].src,
@@ -31,18 +34,34 @@ Template.activityShow.onRendered(function() {
   var url = "";
   var current = Iron.Location.get();
 
-  if (current.host === "") {
-    // route 过来的地址，微信只能获取到 /activities 截止，后面的取不到了
-    // url = window.location.origin + "/activities/";
-    url ="http://msaas.maodou.io/activities";
-  } else {
-    // 刷新页面或者新建文章后跳转的页面，微信获取的是完整地址
-    url = window.location.href;
-  }
+  console.log('current is ');
+  console.log(current);
+
+  // if (current.host === "") {
+  //   // route 过来的地址，微信只能获取到 /activities 截止，后面的取不到了
+  //   // url = window.location.origin + "/activities/";
+  //   url ="http://msaas.maodou.io/activities";
+  //   console.log('1: url = ', url);
+  // } else {
+  //   // 刷新页面或者新建文章后跳转的页面，微信获取的是完整地址
+  //   url = window.location.href;
+  //   console.log('2: url = ', url);
+  // }
+
+  /*
+  host: "localhost:3000"
+  hostname: "localhost"
+  href: "http://localhost:3000/activities/ubFhkp88TGuLbuDHi"
+  origin: "http://localhost:3000"
+  originalUrl: "http://localhost:3000/activities/ubFhkp88TGuLbuDHi"
+  path: "/activities/ubFhkp88TGuLbuDHi"
+  pathname: "/activities/ubFhkp88TGuLbuDHi"
+  */
+  url = current.originalUrl;
 
   // 根据不同情况传递不同的地址获取 signature
   Meteor.call("signature", url, function(error, result) {
-    console.log(result.signature);
+    console.log('signature is ', result.signature);
     Meteor.call("printLog", result.signature);
 
     wx.config({

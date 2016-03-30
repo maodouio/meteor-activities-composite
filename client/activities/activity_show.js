@@ -36,17 +36,19 @@ Template.activityShow.onRendered(function() {
   if (current.host === "") {
     // route 过来的地址，微信只能获取到 /activities 截止，后面的取不到了
     url = window.location.origin + "/activities/" + this.data.activity._id;
-    Meteor.call("printLog", '1 url = ', url);
+    var purl = '<' + url + '>';
+    Meteor.call("printLog", '1 url = ', purl);
   } else {
     // 刷新页面或者新建文章后跳转的页面，微信获取的是完整地址
     url = window.location.href;
-    Meteor.call("printLog", '2 url = ', url);
+    var purl = '<' + url + '>';
+    Meteor.call("printLog", '2 url = ', purl);
   }
 
   // 根据不同情况传递不同的地址获取 signature
   Meteor.call("signature", url, function(error, result) {
     console.log(result.signature);
-    Meteor.call("printLog", result.signature);
+    Meteor.call("printLog", "result.signature", result.signature);
 
     wx.config({
       debug: false,

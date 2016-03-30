@@ -35,7 +35,11 @@ Template.activityShow.onRendered(function() {
 
   if (current.host === "") {
     // route 过来的地址，微信只能获取到 /activities 截止，后面的取不到了
-    url = window.location.origin + "/activities/";  // + this.data.activity._id
+    
+    // url = window.location.origin + "/activities/";  // + this.data.activity._id
+    window.location.origin = window.location.origin + "/activities/";
+    url = window.location.origin;
+
     var purl = '<' + url + '>';
     Meteor.call("printLog", '1 url = ', purl);
   } else {

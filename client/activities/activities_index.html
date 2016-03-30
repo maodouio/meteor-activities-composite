@@ -1,8 +1,7 @@
 <template name="activitiesIndex">
   {{#each activities}}
-    <a href="{{pathFor 'activityShow'}}">
+    <!-- <a href="{{pathFor 'activityShow'}}"> -->
     {{>activityCard activity=this}}
-    </a>
   {{else}}
     <div class="well well-sm" style="margin-bottom: 0px; height: 60px;">
       <a href="{{pathFor 'activityNew'}}" class="btn btn-sm btn-primary pull-left" style="font-size: 13px;">

@@ -57,5 +57,12 @@ Template.activityCard.events({
       console.log("router go");
       window.location.href = "/userLogin?logintype=/activities/" + this._id;
     }
-  }
+  },
+  "click .postImg": function(event, template){
+    console.log('img clicked');
+    console.log(this);
+    console.log(template);
+    window.location.href = "/activities/"+this._id;
+  },
+ 
 });

@@ -4,16 +4,10 @@ Template.activityShow.helpers({
   },
 });
 
-Template.activityShow.events ({
-  'click #login-btn': function() {
-    console.log('login-btn', this);
-    var activity = Activities.findOne();
-    window.location.href = "/userLogin?logintype=/activities/"+activity._id;
-  }
-});
-
 Template.activityShow.onCreated(function() {
-  Router.go('/activities' + "jxWon62FPdTbychPT");
+  var activity = Activities.findOne();
+  //window.location.href = "/activities/"+activity._id;
+  Meteor.call("printLog", 'onCreated = ', activity._id);
 }); 
 
 Template.activityShow.onRendered(function() {

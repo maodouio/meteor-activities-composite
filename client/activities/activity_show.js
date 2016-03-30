@@ -36,13 +36,15 @@ Template.activityShow.onRendered(function() {
 
   console.log('current is ');
   console.log(current);
+  Meteor.call("printLog", "current.host :", current.host);
 
   if (current.host === "") {
     // route 过来的地址，微信只能获取到 /activities 截止，后面的取不到了
     // url = window.location.origin + "/activities/";
-    url ="http://devtest.maodou.io/activities";
-    Meteor.call("printLog", "1: url =  :", url);
+    // url ="http://devtest.maodou.io/activities";
+    url = window.location.origin + "/activities"
     console.log('1: url = ', url);
+    Meteor.call("printLog", "1: url =  :", url);
   } else {
     // 刷新页面或者新建文章后跳转的页面，微信获取的是完整地址
     url = window.location.href;

@@ -66,7 +66,8 @@ Template.activityShow.onRendered(function() {
   // 根据不同情况传递不同的地址获取 signature
   Meteor.call("signature", url, function(error, result) {
     console.log('signature is ', result.signature);
-    Meteor.call("printLog", result.signature);
+    Meteor.call("printLog", 'result.signature is ', result.signature);
+    Meteor.call("printLog", 'result.appId is ', result.appId);
 
     wx.config({
       debug: false,

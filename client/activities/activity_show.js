@@ -35,7 +35,7 @@ Template.activityShow.onRendered(function() {
 
   if (current.host === "") {
     // route 过来的地址，微信只能获取到 /activities 截止，后面的取不到了
-    url = window.location.origin + "/activities/";
+    url = window.location.origin + "/activities/" + this.data.activity._id;
     Meteor.call("printLog", '1 url = ', url);
   } else {
     // 刷新页面或者新建文章后跳转的页面，微信获取的是完整地址

@@ -33,8 +33,7 @@ Template.activityShow.onRendered(function() {
 
   if (current.host === "") {
     // route 过来的地址，微信只能获取到 /activities 截止，后面的取不到了
-    // url = window.location.origin + "/activities/";
-    url ="http://msaas.maodou.io/activities";
+    url = window.location.origin + "/activities/";
   } else {
     // 刷新页面或者新建文章后跳转的页面，微信获取的是完整地址
     url = window.location.href;

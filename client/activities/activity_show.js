@@ -37,16 +37,16 @@ Template.activityShow.onRendered(function() {
   console.log('current is ');
   console.log(current);
 
-  // if (current.host === "") {
-  //   // route 过来的地址，微信只能获取到 /activities 截止，后面的取不到了
-  //   // url = window.location.origin + "/activities/";
-  //   url ="http://msaas.maodou.io/activities";
-  //   console.log('1: url = ', url);
-  // } else {
-  //   // 刷新页面或者新建文章后跳转的页面，微信获取的是完整地址
-  //   url = window.location.href;
-  //   console.log('2: url = ', url);
-  // }
+  if (current.host === "") {
+    // route 过来的地址，微信只能获取到 /activities 截止，后面的取不到了
+    // url = window.location.origin + "/activities/";
+    url ="http://devtest.maodou.io/activities";
+    console.log('1: url = ', url);
+  } else {
+    // 刷新页面或者新建文章后跳转的页面，微信获取的是完整地址
+    url = window.location.href;
+    console.log('2: url = ', url);
+  }
 
   /*
   host: "localhost:3000"
@@ -57,7 +57,7 @@ Template.activityShow.onRendered(function() {
   path: "/activities/ubFhkp88TGuLbuDHi"
   pathname: "/activities/ubFhkp88TGuLbuDHi"
   */
-  url = current.originalUrl;
+  // url = current.originalUrl;
 
   // 根据不同情况传递不同的地址获取 signature
   Meteor.call("signature", url, function(error, result) {

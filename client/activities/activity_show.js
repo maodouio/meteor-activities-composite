@@ -10,6 +10,14 @@ Template.activityShow.onCreated(function() {
   Meteor.call("printLog", 'onCreated = ', activity._id);
 }); 
 
+Template.activityShow.events ({
+  'click #login-btn': function() {
+    console.log('login-btn', this);
+    var activity = Activities.findOne();
+    window.location.href = "/userLogin?logintype=/activities/"+activity._id;
+  }
+});
+
 Template.activityShow.onRendered(function() {
 	var share_config = {
        "share": {

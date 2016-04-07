@@ -23,6 +23,7 @@ Package.onUse(function(api) {
   api.use('cfs:filesystem@0.1.2', ["server", "client"]);
   api.use('froatsnook:request@2.64.0', 'server');
   api.use('iron:location@1.0.11', 'server');
+  api.use('peppelg:bootstrap-3-modal', ["server", "client"]);
 
   api.use('maodouio:autoform-file@1.0.5', ["server", "client"]);
   // api.use('maodouio:activity-comments@0.0.1', ["server", "client"]);
@@ -79,6 +80,8 @@ Package.onUse(function(api) {
   // methods must before fixtures
   api.addFiles('server/seeds/methods.js', 'server');
   api.addFiles('server/seeds/fixtures.js', 'server');
+  api.addFiles(['client/needInfo/needInfo.html', 'client/needInfo/needInfo.js'], 'client');
+
 
   // export
   api.export('Activities');

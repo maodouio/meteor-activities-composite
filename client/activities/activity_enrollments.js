@@ -47,6 +47,8 @@ AutoForm.hooks({
   'enrollmentForm': {
     before: {
       insert: function(doc) {
+        Modal.show("needInfo");
+        return;
         if (Meteor.user()) {
           doc.userId = Meteor.userId();
           doc.headimgurl = Meteor.user().profile.headimgurl;

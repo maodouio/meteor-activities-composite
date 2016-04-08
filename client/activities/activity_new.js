@@ -1,4 +1,5 @@
 Template.activityNew.rendered = function() {
+  $('.note-editable').css("min-height", "200px");
 };
 
 Template.activityNew.helpers({

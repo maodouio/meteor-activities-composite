@@ -1,3 +1,7 @@
+Template.activityEnrollments.onRendered(function(){
+  Meteor.subscribe('userprofile', Meteor.userId());
+});
+
 Template.activityEnrollments.helpers({
   isEnrolledIn: function (activityId) {
     var result = Enrollments.findOne({userId: Meteor.userId(), activityId: activityId});
@@ -40,6 +44,22 @@ Template.activityEnrollments.events ({
       Enrollments.remove({_id: eid});
       console.log("取消成功!");
     }
+  },
+  'click #fake_submit': function() {
+    var userProfile = UserProfiles.findOne();
+    console.log(userProfile);
+
+    if (userProfile) {
+      if (!(userProfile.name && userProfile.company && userProfile.positions)) {
+        Modal.show("needInfo",{type: "update"});
+        return;
+      }
+    } else {
+      Modal.show("needInfo",{type: "insert"});
+      return;
+    }
+
+    $("#true_submit").trigger("click");
   }
 });
 
@@ -47,8 +67,6 @@ AutoForm.hooks({
   'enrollmentForm': {
     before: {
       insert: function(doc) {
-        Modal.show("needInfo");
-        return;
         if (Meteor.user()) {
           doc.userId = Meteor.userId();
           doc.headimgurl = Meteor.user().profile.headimgurl;

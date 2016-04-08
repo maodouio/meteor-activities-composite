@@ -10,8 +10,9 @@
       {{else}}
         {{#if statusIs "ENROLLING"}}
           {{#autoForm collection="Enrollments" id="enrollmentForm" type="insert"}}
-            <button class="enroll-btn navbar-fixed-bottom" type="submit">我要报名</button>
+          <button id="true_submit" class="enroll-btn navbar-fixed-bottom" type="submit" style="display:none;">我要报名</button>
           {{/autoForm}}
+          <button id="fake_submit" class="enroll-btn navbar-fixed-bottom" type="submit">我要报名</button>
         {{/if}}
       {{/if}}
     {{/if}}

@@ -8,13 +8,13 @@
         </div>
 
         <div class="modal-body">
-          {{#autoForm collection="UserProfiles" doc=this id="userMoreInfoForm" type="update"}}
+          {{#autoForm collection="UserProfiles" doc=this.profile id="userMoreInfoForm" type=this.type}}
             <fieldset>
               {{> afQuickField name='name'}}
               {{> afQuickField name='company'}}
               {{> afQuickField name='positions'}}
             </fieldset>
-            <button id="update_info" type="submit" class="btn btn-primary">保存</button>
+            <button id="update_info" type="submit" class="btn btn-primary">报名</button>
           {{/autoForm}}
         </div>
 

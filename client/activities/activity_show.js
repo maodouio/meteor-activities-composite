@@ -30,10 +30,9 @@ Template.activityShow.onRendered(function() {
   if (logo)
     imgUrl = logo.url();
 
+  imgUrl = window.location.origin + imgUrl;
   console.log('logo url is ', imgUrl);
-  // Meteor.users.find({_id: userId})
-  // if ()
-
+  
 	var share_config = {
        "share": {
           //"imgUrl": $(".postImg > img")[0].src,

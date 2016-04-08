@@ -106,6 +106,21 @@ Meteor.publishComposite("activityComposite", function(activityId) {
       },
       {
         find: function(activity) {
+            // Find user that authored comment.
+          return UserProfiles.find(
+              { userId: activity.userId },
+              { limit: 1, fields: { logo: 1, userId: 1} });
+        },
+        children: [
+          {
+            find: function (userprofile) {
+              return Logos.find({_id: userprofile.logo});
+            }
+          }
+        ]
+      },
+      {
+        find: function(activity) {
           if (typeof Enrollments !== "undefined") {
             return Enrollments.find({activityId: activity._id});
           }

@@ -8,7 +8,7 @@ Template.activityShow.onCreated(function() {
   var activity = Activities.findOne();
   //window.location.href = "/activities/"+activity._id;
   Meteor.call("printLog", 'onCreated = ', activity._id);
-}); 
+});
 
 Template.activityShow.events ({
   'click #login-btn': function() {
@@ -19,9 +19,25 @@ Template.activityShow.events ({
 });
 
 Template.activityShow.onRendered(function() {
+  var imgUrl = $(".postImg > img")[0].src;
+  var userId = this.data.activity.userId;
+  var authorProfile = UserProfiles.findOne({userId: userId});
+  console.log(authorProfile);
+
+  var logoId = authorProfile.logo;
+  var logo = Logos.findOne({_id: logoId});
+  console.log(logo);
+  if (logo)
+    imgUrl = logo.url();
+
+  console.log('logo url is ', imgUrl);
+  // Meteor.users.find({_id: userId})
+  // if ()
+
 	var share_config = {
        "share": {
-          "imgUrl": $(".postImg > img")[0].src,
+          //"imgUrl": $(".postImg > img")[0].src,
+          "imgUrl": imgUrl,
           "desc" : this.data.activity.desc,
           "title" : this.data.activity.title,
           "link": window.location.href,
@@ -41,7 +57,6 @@ Template.activityShow.onRendered(function() {
 
   if (current.host === "") {
     // route 过来的地址，微信只能获取到 /activities 截止，后面的取不到了
-    
     url = window.location.origin + "/activities/";  // + this.data.activity._id
     //window.location.origin = window.location.origin + "/activities/";
     //url = window.location.origin;

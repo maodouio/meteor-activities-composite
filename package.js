@@ -83,6 +83,9 @@ Package.onUse(function(api) {
   api.addFiles('server/seeds/fixtures.js', 'server');
   api.addFiles(['client/needInfo/needInfo.html', 'client/needInfo/needInfo.js'], 'client');
 
+  // pingpp
+  api.addFiles('client/pingpp.js', 'client');
+  api.addFiles('server/payMethods.js', 'server');
 
   // export
   api.export('Activities');

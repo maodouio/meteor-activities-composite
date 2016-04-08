@@ -3,6 +3,18 @@ Template.activityEnrollments.onRendered(function(){
 });
 
 Template.activityEnrollments.helpers({
+  needPay: function() {
+    var fee = Activities.findOne().fee;
+    if(fee > 0) {
+      return true;
+    }
+    return false;
+  },
+  state: function() {
+    // var sum = Session.get("counterOne")*0.01 + Session.get("counterTwo")*0.02;
+    // return sum.toFixed(2) * 100;
+    return 1;
+  },
   isEnrolledIn: function (activityId) {
     var result = Enrollments.findOne({userId: Meteor.userId(), activityId: activityId});
     return (result !== undefined);

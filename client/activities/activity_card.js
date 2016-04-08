@@ -64,5 +64,11 @@ Template.activityCard.events({
     console.log(template);
     window.location.href = "/activities/"+this._id;
   },
- 
+
 });
+
+Template.activityCard.rendered = function() {
+  // Counter++ everytime page rendered.
+  console.log(this.data.activity._id);
+  Activities.update(this.data.activity._id, {$inc: {activityViewCounter: 1}});
+};

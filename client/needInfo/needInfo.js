@@ -1,5 +1,5 @@
 Template.needInfo.onRendered(function(){
-  Meteor.subscribe('userprofile', Meteor.userId());
+  // Meteor.subscribe('userprofile', Meteor.userId());
 });
 
 

@@ -46,7 +46,7 @@ Template.activityEnrollments.events ({
     }
   },
   'click #fake_submit': function() {
-    var userProfile = UserProfiles.findOne();
+    var userProfile = UserProfiles.findOne({"userId": Meteor.userId()});
     console.log(userProfile);
 
     if (userProfile) {

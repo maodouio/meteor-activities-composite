@@ -8,10 +8,7 @@
         </div>
         <a class="btn btn-sm btn-default delete-enrollment" href="#" role="button">取消报名</a><br>
         {{#if needPay}}
-          <a id="wx_pay_button" class="enroll-btn navbar-fixed-bottom"
-          href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx35fc3ff5c073eb9b&redirect_uri=http%3a%2f%2fdevtest.maodou.io%2fpay%2f&response_type=code&scope=snsapi_base&state={{state}}#wechat_redirect">
-            支付费用
-          </a>
+          <a id="wx_pay_button" class="enroll-btn navbar-fixed-bottom">支付费用</a>
         {{/if}}
       {{else}}
         {{#if statusIs "ENROLLING"}}

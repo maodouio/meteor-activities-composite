@@ -5,7 +5,8 @@ Template.activityEnrollments.onRendered(function(){
 Template.activityEnrollments.helpers({
   needPay: function() {
     var fee = Activities.findOne().fee;
-    if(fee > 0) {
+    var isPay = Enrollments.findOne({userId: Meteor.userId() }).isPay;
+    if(fee > 0 && !isPay) {
       return true;
     }
     return false;
@@ -39,6 +40,27 @@ Template.activityEnrollments.helpers({
 });
 
 Template.activityEnrollments.events ({
+  'click #wx_pay_button': function() {
+    var amount = Activities.findOne().fee * 100;
+    var openid = Meteor.user().openid;
+    // var orderNum =
+    Meteor.call("createChargeWx", openid, amount, function(error, result) {
+      if (error) {
+        console.log("error", error);
+      }
+      if (result) {
+        //调用微信支付控件
+        pingpp.createPayment(result, function(result, err){
+          // 处理错误信息
+          if(!err) {
+            var enrid = Enrollments.findOne({userId: Meteor.userId()})._id;
+            Enrollments.update({_id: enrid}, {$set: {"isPay": true}});
+            console.log(result);
+          }
+        });
+      }
+    });
+  },
   'click .delete-enrollment': function() {
     var eid = Enrollments.findOne({userId: Meteor.userId()})._id;
     console.log('eid is ', eid);

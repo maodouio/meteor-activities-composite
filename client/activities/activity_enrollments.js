@@ -50,16 +50,12 @@ Template.activityEnrollments.events ({
     console.log(userProfile);
 
     if (userProfile) {
-      if (!(userProfile.name && userProfile.company && userProfile.positions)) {
-        Modal.show("needInfo",{type: "update"});
-        return;
-      }
+      Modal.show("needInfo",{type: "update",profile: userProfile});
+      return;
     } else {
-      Modal.show("needInfo",{type: "insert"});
+      Modal.show("needInfo",{type: "insert",profile: userProfile});
       return;
     }
-
-    $("#true_submit").trigger("click");
   }
 });
 

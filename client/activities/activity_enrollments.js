@@ -42,7 +42,7 @@ Template.activityEnrollments.helpers({
 Template.activityEnrollments.events ({
   'click #wx_pay_button': function() {
     var amount = Activities.findOne().fee * 100;
-    var openid = Meteor.user().openid;
+    var openid = Meteor.user().profile.openid;
     // var orderNum =
     Meteor.call("createChargeWx", openid, amount, function(error, result) {
       if (error) {
@@ -52,10 +52,9 @@ Template.activityEnrollments.events ({
         //调用微信支付控件
         pingpp.createPayment(result, function(result, err){
           // 处理错误信息
-          if(!err) {
+          if(result == "success") {
             var enrid = Enrollments.findOne({userId: Meteor.userId()})._id;
             Enrollments.update({_id: enrid}, {$set: {"isPay": true}});
-            console.log(result);
           }
         });
       }

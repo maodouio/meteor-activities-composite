@@ -28,11 +28,12 @@ Template.activityShow.onRendered(function() {
   var logo = Logos.findOne({_id: logoId});
   console.log(logo);
   if (logo)
-    imgUrl = logo.url();
-
-  imgUrl = window.location.origin + imgUrl;
+  {
+    imgUrl = logo.url();  // imgUrl is like /cfs/files/logos/Es8ijwmyGcEt8bp8B/searchicon.jpg
+    imgUrl = window.location.origin + imgUrl;
+  }
   console.log('logo url is ', imgUrl);
-  
+
 	var share_config = {
        "share": {
           //"imgUrl": $(".postImg > img")[0].src,

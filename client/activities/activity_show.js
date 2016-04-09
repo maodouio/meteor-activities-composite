@@ -32,13 +32,18 @@ Template.activityShow.onRendered(function() {
     imgUrl = logo.url();  // imgUrl is like /cfs/files/logos/Es8ijwmyGcEt8bp8B/searchicon.jpg
     imgUrl = window.location.origin + imgUrl;
   }
-  console.log('logo url is ', imgUrl);
+  console.log(imgUrl);
+
+  var desc = "时间: " + moment(this.data.activity.time).format("YYYY-MM-DD");
+  desc = desc + "\n地点: " + this.data.activity.where;
+  console.log(desc);
 
 	var share_config = {
        "share": {
           //"imgUrl": $(".postImg > img")[0].src,
           "imgUrl": imgUrl,
-          "desc" : this.data.activity.desc,
+          //"desc" : this.data.activity.desc,
+          "desc" : desc,
           "title" : this.data.activity.title,
           "link": window.location.href,
           "success":function(){

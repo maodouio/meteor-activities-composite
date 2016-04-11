@@ -1,22 +1,4 @@
 Meteor.methods({
-  getOpenidByCodeForPay: function(code) {
-    var url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=wx35fc3ff5c073eb9b&secret=1051d7ee32aa23310c0b6d8e3b12cd05&code="
-            + code
-            + "&grant_type=authorization_code";
-    console.log(url);
-    try {
-      var result = HTTP.get(url);
-      // console.log("result =", result);
-      var openid = JSON.parse(result.content).openid
-      console.log(openid);
-      return openid;
-
-    } catch (e) {
-      // Got a network error, time-out or HTTP error in the 400 or 500 range.
-      console.log(e);
-      return "error: " + e;
-    }
-  },
   createChargeWx: function(openid, amount) {
     var json = {
       "order_no": "maodou004",

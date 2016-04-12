@@ -38,5 +38,8 @@ Meteor.methods({
 			"userId": userId,
 			"headimgurl": headimgurl
 		});
+	},
+	deleateActivity: function(id) {
+	  Activities.remove({_id:id});
 	}
 });

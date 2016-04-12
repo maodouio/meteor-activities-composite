@@ -3,6 +3,7 @@
   <div class="">
     <div class="sPostACon">
       {{#if userIsAuthor}}
+        <a id="delete_activity" class="btn btn-xs btn-success" role="button" style="float: left; margin-top: 8px; margin-right: 5px; background-color: #ea6153; margin-left: 10px; border-color: #ea6153">删除活动</a>
         <a class="btn btn-xs btn-success closeActicity" href="#" role="button" style="float: right; margin-right: 10px; margin-left: 5px; margin-top: 8px;">结束活动</a>
         {{#if statusIs "CANCEL"}}
           <a class="btn btn-xs btn-success recoverActicity"  href="#" role="button" style="float: right; margin-top: 8px;">恢复活动</a>

@@ -68,5 +68,14 @@ Template.activityDetail.events ({
       type        : "multi"
     }
     Modal.show("chatWindow", data);
-  }
+  },
+  'click #delete_activity': function() {
+    var activityId = this._id;
+    if (confirm("你确定要删除这个活动吗?")) {
+      console.log(activityId);
+      Meteor.call("deleateActivity", activityId, function(error, result){
+        window.location.href = "/activities";
+      });
+    }
+  },
 });

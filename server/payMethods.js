@@ -9,7 +9,7 @@ Meteor.methods({
       "currency": "cny",
       "client_ip": "127.0.0.1",
       "app": {
-        "id": "app_eHqjLKjjjT8CLGaX"
+        "id": "app_Py9i5SaXzLGGTyzP"
       },
       "extra": {
         "open_id": "xxxxxxxxxxxx"

@@ -61,6 +61,14 @@ Template.activityEnrollments.events ({
           if(result == "success") {
             var enrid = Enrollments.findOne({userId: Meteor.userId()})._id;
             Enrollments.update({_id: enrid}, {$set: {"isPay": true}});
+            var userId = Meteor.userId();
+            var title = Activities.findOne().title;
+            var fee = Activities.findOne().fee;
+            var supporter = Meteor.user().profile.nickname;
+            var paytime = moment(Date()).format("YYYY-MM-DD HH:mm");
+            var content = '您创建的活动:'+ title + ',新增一个报名者:'+ supporter
+            +',支付'+ fee + '元,时间:'+ paytime;
+            Meteor.call('sendMessageToUser',userId,content);
           }
         });
       }

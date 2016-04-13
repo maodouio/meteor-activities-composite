@@ -3,6 +3,9 @@ Template.activityEnrollments.onRendered(function(){
 });
 
 Template.activityEnrollments.helpers({
+  paidUser: function() {
+    return Enrollments.find({"isPay":true}).fetch();
+  },
   needPay: function() {
     var fee = Activities.findOne().fee;
     var isPay = Enrollments.findOne({userId: Meteor.userId() }).isPay;

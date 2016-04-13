@@ -30,4 +30,13 @@
       <hr />
     </div>
   </div>
+  <div class="control-label">
+    <label class="control-label">已付款的人</label>
+    <div>
+      {{#each paidUser}}
+        <a href='/users/{{userId}}'> <img src="{{headimgurl}}" style="width: 35px; height: 35px; border-radius: 50%;"/> </a>
+      {{/each}}
+      <hr />
+    </div>
+  </div>
 </template>

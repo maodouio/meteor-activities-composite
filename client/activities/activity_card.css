@@ -320,3 +320,29 @@ ul, menu, dir {
 .cancel {
   background-color: #3F3F46;
 }
+/* like 的位置 */
+
+@media screen and (max-width: 330px) {
+  .dislike {
+    position:absolute;
+    right:9px;
+    bottom:21px;
+  }
+  .like {
+    position:absolute;
+    right:9px;
+    bottom:21px;
+  }
+}
+@media screen and (min-width: 331px) {
+  .dislike {
+    position:absolute;
+    right:9px;
+    bottom:-4px;
+  }
+  .like {
+    position:absolute;
+    right:9px;
+    bottom:-4px;
+  }
+}

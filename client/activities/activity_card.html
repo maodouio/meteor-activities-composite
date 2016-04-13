@@ -17,7 +17,7 @@
               </div>
             </div>
           </div>
-          <div class="actUserInfo">
+          <div class="actUserInfo" style="position:relative">
 
             <a href='/users/{{userId}}'>
               <img alt="image" src="{{headimgurl}}" class="actUserPhoto" />
@@ -35,9 +35,9 @@
 
             {{#if hasPackage "ActivityLikes"}}
               {{#if hasLiked}}
-                <i class="fa fa-thumbs-up dislike"  style="float: right; font-size: large; color: #E96F4B; padding-right: 15px; padding-top: 25px;">&nbsp;<span style="font-size: 14px;">{{likesCount}}</span></i>
+                <i class="fa fa-thumbs-up dislike"  style="font-size: large; color: #E96F4B; padding-right: 15px; padding-top: 25px;">&nbsp;<span style="font-size: 14px;">{{likesCount}}</span></i>
               {{else}}
-                <i class="fa fa-thumbs-o-up like" style="float: right; font-size: large; color: #E96F4B; padding-right: 15px; padding-top: 25px;">&nbsp;<span class="actUserLabel nm" style="font-size: 14px;">{{likesCount}}</span></i>
+                <i class="fa fa-thumbs-o-up like" style="font-size: large; color: #E96F4B; padding-right: 15px; padding-top: 25px;">&nbsp;<span class="actUserLabel nm" style="font-size: 14px;">{{likesCount}}</span></i>
               {{/if}}
             {{/if}}
 

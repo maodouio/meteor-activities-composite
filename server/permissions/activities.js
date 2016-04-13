@@ -4,12 +4,15 @@ Activities.allow({
     return true;
   },
   update: function (userId, doc, fields, modifier) {
-    console.log("server update...");
-    // Free-for-all!
-    return true;
+    if (userId == doc.userId) {
+      return true;
+    }
+    return false;
   },
   remove: function (userId, doc) {
-    // Free-for-all!
-    return true;
+    if (userId == doc.userId) {
+      return true;
+    }
+    return false;
   }
 });

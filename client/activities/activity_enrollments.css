@@ -28,10 +28,10 @@
 	width:20%
 }
 .tablepaid th:nth-child(3){
-	width:30%
+	width:25%
 }
 .tablepaid tr td{
-	font-size:1px;
+	font-size:.7em;
  	text-align: center;
  	border-right-style:none;
  	border-left-style:none;

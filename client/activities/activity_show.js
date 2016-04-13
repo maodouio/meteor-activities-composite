@@ -35,7 +35,9 @@ Template.activityShow.onRendered(function() {
   console.log(imgUrl);
 
   var desc = "时间: " + moment(this.data.activity.time).format("YYYY-MM-DD");
-  desc = desc + "\n地点: " + this.data.activity.where;
+  desc = desc + "\地点: " + this.data.activity.where;
+  desc = desc + "\b费用: " + this.data.activity.fee;
+  desc = desc + "\b人数: " + this.data.activity.limit;
   console.log(desc);
 
 	var share_config = {

@@ -46,7 +46,7 @@ Meteor.publishComposite("activitiesComposite", function() {
   return {
     find: function() {
       return Activities.find(
-        { status: { $in: ['CREATED', 'ENROLLING', 'REGISTERING'] } }, 
+        { status: { $in: ['CREATED', 'ENROLLING', 'REGISTERING'] } },
         { fields: { title: 1, time: 1, createdAt: 1, picture: 1, userId: 1,
                 headimgurl: 1, status: 1, activityViewCounter:1} } );
     },

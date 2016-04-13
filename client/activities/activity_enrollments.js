@@ -4,7 +4,10 @@ Template.activityEnrollments.onRendered(function(){
 
 Template.activityEnrollments.helpers({
   paidUser: function() {
-    return Enrollments.find({"isPay":true}).fetch();
+    var list = Enrollments.find({"isPay":true}).fetch();
+    _.each(list,function(user){user.userprofile = UserProfiles.findOne({userId:user.userId})});
+    console.log(list);
+    return list;
   },
   needPay: function() {
     var fee = Activities.findOne().fee;

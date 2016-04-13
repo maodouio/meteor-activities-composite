@@ -31,10 +31,19 @@
     </div>
   </div>
   <div class="control-label">
-    <label class="control-label">已付款的人</label>
+    <label class="control-label">已支付的报名者</label>
     <div>
       {{#each paidUser}}
-        <a href='/users/{{userId}}'> <img src="{{headimgurl}}" style="width: 35px; height: 35px; border-radius: 50%;"/> </a>
+        <a href='/users/{{userId}}' style="float: left;"> <img src="{{headimgurl}}" style="width: 35px; height: 35px; border-radius: 50%;"/> </a>
+        <div class="" style="">
+          <div class="" style="text-align: center; font-size: 1px;">
+            {{userprofile.name}}
+            {{userprofile.positions}}
+          </div>
+          <div class="" style="text-align: center; font-size: 1px; border-bottom: 1px solid #eee;">
+            {{userprofile.company}}
+          </div>
+        </div>
       {{/each}}
       <hr />
     </div>

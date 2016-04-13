@@ -19,3 +19,31 @@
 .delete-enrollment {
 	float: right; margin-right: 10px; margin-left: 5px; margin-top: 8px; background: #F5F5DC; color: #868686; border: 0;
 }
+
+.tablepaid th {
+ text-align: center;
+ border: none
+}
+.tablepaid th:nth-child(2){
+	width:20%
+}
+.tablepaid th:nth-child(3){
+	width:30%
+}
+.tablepaid tr td{
+	font-size:1px;
+ 	text-align: center;
+ 	border-right-style:none;
+ 	border-left-style:none;
+ 	border-top-style: none;
+}
+.tablepaid tr {
+	border:none;
+	box-shadow: inset 0px 0px 1em;
+}
+.tablepaid tr td:nth-child(4){
+	text-align: left;
+}
+.tablepaid tr:nth-child(odd) td {
+	background: #fff
+}

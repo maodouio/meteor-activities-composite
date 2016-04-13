@@ -30,22 +30,53 @@
       <hr />
     </div>
   </div>
+  {{#if paidUser}}
   <div class="control-label">
     <label class="control-label">已支付的报名者</label>
-    <div>
+    <table class='tablepaid'>
+      <thead>
+        <tr>
+          <th></th>
+          <th >姓名</th>
+          <th>职位</th>
+          <th>公司</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each paidUser}}
+        <tr>
+          <td><a href='/users/{{userId}}' style="float: left;"> <img src="{{headimgurl}}" style="width: 35px; height: 35px; border-radius: 50%;"/> </a>
+</td>
+<!-- <td><a href='/users/{{userId}}' style="float: left;"> <img src="http://wx.qlogo.cn/mmopen/PiajxSqBRaEK6MozZvu5w33YLjwGmxAvRTNR7q2DsLqticT1yhlD3icORq2V5oYXfMCXlMoCHicZUXS6bDoawCS7hg/0
+" style="width: 35px; height: 35px; border-radius: 50%;"/> </a>
+</td> -->
+          <td>{{userprofile.name}}</td>
+          <td>{{userprofile.positions}}</td>
+          <td>{{userprofile.company}}</td>
+          <!-- <td>于志伟</td>
+          <td>前端开发</td>
+          <td>深圳市悦动创艺科技有限公司</td> -->
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+
+
+    <!-- <div>
       {{#each paidUser}}
         <a href='/users/{{userId}}' style="float: left;"> <img src="{{headimgurl}}" style="width: 35px; height: 35px; border-radius: 50%;"/> </a>
         <div class="" style="height: 40px;">
-          <div class="" style="text-align: center; font-size: 0.85em; height: 19px;">
+          <div class="">
             {{userprofile.name}}
             {{userprofile.positions}}
           </div>
-          <div class="" style="text-align: center; font-size: 0.85em; border-bottom: 1px solid #eee; height: 19px;">
+          <div class="">
             {{userprofile.company}}
           </div>
         </div>
       {{/each}}
       <hr />
-    </div>
+    </div> -->
   </div>
+  {{/if}}
 </template>

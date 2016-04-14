@@ -4,8 +4,6 @@ Template.activityRegistrations.helpers({
   },
   userIsAuthor: function(){
     // this == activity
-    console.log("fuck permossions="+(this.userId === Meteor.userId()) || Roles.userIsInRole(this.userId, ['admin']));
-
     return (this.userId === Meteor.userId()) || Roles.userIsInRole(Meteor.userId(), ['admin']);
 
   },
@@ -103,8 +101,6 @@ Template.activityRegisterButton.helpers({
   },
   userIsAuthor: function(){
     // this == activity
-    console.log("fuck permossions="+(this.userId === Meteor.userId()) || Roles.userIsInRole(this.userId, ['admin']));
-
     return (this.userId === Meteor.userId()) || Roles.userIsInRole(Meteor.userId(), ['admin']);
 
   },

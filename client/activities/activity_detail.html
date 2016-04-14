@@ -11,13 +11,11 @@
           <a class="btn btn-xs btn-success cancelActicity"  href="#" role="button" style="float: right; margin-top: 8px;">取消活动</a>
         {{/if}}
         <a class="btn btn-xs btn-success"  href="{{pathFor 'activityEdit'}}" role="button" style="float: right; margin-top: 8px; margin-right: 5px;">编辑活动</a><br>
+        <button id="send_msg_btn" type="button" class="btn btn-xs btn-warning" style="float: right;margin-right: 10px;margin-top: 8px;">发送消息</button>
       {{/if}}
       <h1 class="sActConT" style="display: inline-flex;">{{title}}</h1>
       <div class="sPostAConText">
         <div class="sPostAConTextCon">
-          {{#if userIsAuthor}}
-          <button id="send_msg_btn" type="button" class="btn btn-xs btn-warning" style="float: right;">发送消息</button>
-          {{/if}}
           <div class="desc">
 
             {{{desc}}}

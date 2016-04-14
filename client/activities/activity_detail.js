@@ -1,3 +1,7 @@
+Template.activityDetail.onRendered(function(){
+  console.log("fuck permossions="+(this.userId === Meteor.userId()) || Roles.userIsInRole(Meteor.userId(), ['admin']));
+
+});
 Template.activityDetail.helpers({
   str2html: function(str) {
    //console.log(str);
@@ -16,7 +20,9 @@ Template.activityDetail.helpers({
   },
   userIsAuthor: function(){
     // this == activity
-    return (this.userId === Meteor.userId()) || Roles.userIsInRole(this.userId, ['admin']);
+    console.log("fuck permossions="+(this.userId === Meteor.userId()) || Roles.userIsInRole(this.userId, ['admin']));
+
+    return (this.userId === Meteor.userId()) || Roles.userIsInRole(Meteor.userId(), ['admin']);
   },
   statusIs: function(status){
     // console.log("statusIs this :", this);

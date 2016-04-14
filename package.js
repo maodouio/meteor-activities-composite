@@ -25,6 +25,7 @@ Package.onUse(function(api) {
   api.use('iron:location@1.0.11', 'server');
   api.use('peppelg:bootstrap-3-modal', ["server", "client"]);
   api.use('mpowaga:autoform-summernote@0.4.2', ['client']);
+  api.use('alanning:roles@1.2.15', ['client', 'server']);
 
   //api.use('shinn:autoform-file@1.0.5', ["server", "client"]);
   // api.use('maodouio:activity-comments@0.0.1', ["server", "client"]);

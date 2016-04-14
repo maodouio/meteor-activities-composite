@@ -16,7 +16,7 @@ Template.activityDetail.helpers({
   },
   userIsAuthor: function(){
     // this == activity
-    return this.userId === Meteor.userId();
+    return (this.userId === Meteor.userId()) || Roles.userIsInRole(this.userId, ['admin']);
   },
   statusIs: function(status){
     // console.log("statusIs this :", this);

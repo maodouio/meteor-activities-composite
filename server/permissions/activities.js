@@ -7,13 +7,13 @@ Activities.allow({
     return false;
   },
   update: function (userId, doc, fields, modifier) {
-    if (userId == doc.userId || Roles.userIsInRole(user.user._id, ['admin'])) {
+    if (userId == doc.userId || Roles.userIsInRole(userId, ['admin'])) {
       return true;
     }
     return false;
   },
   remove: function (userId, doc) {
-    if (userId == doc.userId || Roles.userIsInRole(user.user._id, ['admin'])) {
+    if (userId == doc.userId || Roles.userIsInRole(userId, ['admin'])) {
       return true;
     }
     return false;

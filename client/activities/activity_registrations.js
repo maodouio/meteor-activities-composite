@@ -4,7 +4,7 @@ Template.activityRegistrations.helpers({
   },
   userIsAuthor: function(){
     // this == activity
-    return this.userId === Meteor.userId();
+    return (this.userId === Meteor.userId()) || Roles.userIsInRole(this.userId, ['admin']);
   },
   qrcode: function() {
     var activity = Activities.findOne();
@@ -100,7 +100,7 @@ Template.activityRegisterButton.helpers({
   },
   userIsAuthor: function(){
     // this == activity
-    return this.userId === Meteor.userId();
+    return (this.userId === Meteor.userId()) || Roles.userIsInRole(this.userId, ['admin']);
   },
   isRegistered: function() {
     // 判断该用户是否已经签到，如果已经签则直接显示进入签到页按钮

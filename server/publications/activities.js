@@ -106,13 +106,6 @@ Meteor.publishComposite("activityComposite", function(activityId) {
               { _id: activity.userId },
               { limit: 1, fields: { profile: 1, username: 1 } });
         },
-        children: [
-          {
-            find: function(user) {
-              return UserProfiles.find({userId: user._id});
-            }
-          }
-        ]
       },
       {
         find: function(activity) {
@@ -135,6 +128,13 @@ Meteor.publishComposite("activityComposite", function(activityId) {
             return Enrollments.find({activityId: activity._id});
           }
         },
+        children: [
+          {
+            find: function(user) {
+              return UserProfiles.find({userId: user.userId});
+            }
+          }
+        ]
       },
       {
         find: function(activity) {

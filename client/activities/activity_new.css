@@ -2,3 +2,35 @@
 	height: 40px;
 	line-height: 40px;
 }
+
+[name='imageUploadBtn'] ~ #fileUploadDiv {
+	display: none;
+}
+
+.delete-btn-draw {
+	position: absolute;
+  width: 32px;
+  height: 32px;
+  background-color: rgba(236,92,91,.7);
+  font-size: 45px;
+  right: 0px;
+  top: 0px;
+}
+
+.delete-btn-draw h2 {
+	text-align: center;
+  font-size: 38px;
+  margin-top: -8px;
+  color: #fff
+}
+
+.form-group #imageReveal {
+	display: none;
+	float: right;
+	margin-right: 20px;
+	margin-bottom: 10px;
+	height: 80px;
+	width: 80px;
+	background-size: cover;
+	position: relative;
+}

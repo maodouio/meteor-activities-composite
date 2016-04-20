@@ -11,7 +11,20 @@
 							<fieldset>
 								{{> afQuickField name='title'}}
 								{{> afQuickField name='desc' height=200}}
-								{{> afQuickField name="picture"}}
+                <div class="form-group" data-required="true" style="position: relative;">
+                  <label class="control-label">上传背景图片</label><br>
+                  <button name="imageUploadBtn" type="button" class="btn btn-default js-af-select-file">选择照片</button>
+                  {{> imgUploader}}
+                  <div id="imageReveal" style="background-image:url({{imageUrl}});">
+                    <div class="delete-btn-draw">
+                      <h2>&times;</h2>
+                    </div>
+                  </div>
+                  {{#if hasImage}}
+
+                  {{/if}}
+                </div>
+                <!-- {{> afQuickField name="picture"}} -->
 								{{> afQuickField name='time' class="time-control"}}
 								{{> afQuickField name='where'}}
 								{{> afQuickField name='limit'}}

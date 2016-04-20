@@ -3,9 +3,22 @@ Template.activityNew.rendered = function() {
 };
 
 Template.activityNew.helpers({
+  imageUrl: function() {
+    return Session.get("logoImage");
+  },
+  hasImage: function() {
+    return !!Session.get("logoImage");
+  },
 });
 
 Template.activityNew.events ({
+  'click [name="imageUploadBtn"]': function(e, t) {
+    $( "#myFileInput" ).trigger( "click" );
+  },
+  'click .delete-btn-draw': function(e, t) {
+    Session.set("logoImage","");
+    $('#imageReveal').css('display', 'none');
+  }
 });
 
 AutoForm.hooks({
@@ -15,6 +28,10 @@ AutoForm.hooks({
         console.log(doc);
         doc.createdAt = new Date();
         doc.status = 'ENROLLING';
+        var image = Session.get("logoImage");
+        if (image) {
+          doc.picture = image;
+        }
         return doc;
       }
     },

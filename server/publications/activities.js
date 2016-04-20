@@ -105,7 +105,14 @@ Meteor.publishComposite("activityComposite", function(activityId) {
           return Meteor.users.find(
               { _id: activity.userId },
               { limit: 1, fields: { profile: 1, username: 1 } });
-        }
+        },
+        children: [
+          {
+            find: function(user) {
+              return UserProfiles.find({userId: user._id});
+            }
+          }
+        ]
       },
       {
         find: function(activity) {

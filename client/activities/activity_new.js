@@ -57,7 +57,7 @@ AutoForm.hooks({
             where: where,
             // where: where.replace("T", " "),
             url: window.location.origin + "/activities/"+ result,
-            picurl: picurl
+            picurl: r.picture
           };
 
           Meteor.call("multiSendNews", content);

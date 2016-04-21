@@ -1,14 +1,14 @@
-Template.activityNew.rendered = function() {
+Template.activityNew.onRendered(function(){
   $('.note-editable').css("min-height", "200px");
-};
+});
 
 Template.activityNew.helpers({
   imageUrl: function() {
     return Session.get("logoImage");
   },
-  hasImage: function() {
+  hasImage:function() {
     return !!Session.get("logoImage");
-  },
+  }
 });
 
 Template.activityNew.events ({
@@ -28,12 +28,12 @@ AutoForm.hooks({
         console.log(doc);
         doc.createdAt = new Date();
         doc.status = 'ENROLLING';
-        var image = Session.get("logoImage");
+        var image = Session.get('logoImage');
         if (image) {
           doc.picture = image;
         }
         return doc;
-      }
+      },
     },
     onSuccess: function (operation, result, template) {
       console.log('New activitie inserted successfully!');

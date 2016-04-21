@@ -15,13 +15,12 @@
                   <label class="control-label">上传背景图片</label><br>
                   <button name="imageUploadBtn" type="button" class="btn btn-default js-af-select-file">选择照片</button>
                   {{> imgUploader}}
-                  <div id="imageReveal" style="background-image:url({{imageUrl}});">
+                  {{#if hasImage}}
+                  <div id="imageReveal" style="display:inline-block;background-image:url({{imageUrl}});">
                     <div class="delete-btn-draw">
                       <h2>&times;</h2>
                     </div>
                   </div>
-                  {{#if hasImage}}
-
                   {{/if}}
                 </div>
                 <!-- {{> afQuickField name="picture"}} -->

@@ -1,6 +1,6 @@
 <template name="activityCard">
   {{#with activity}}
-    <div class="pic">
+     <div class="pic">
         <div class="{{getClassByStatus}}" id="3ggmM69ggaDo5wB8r">
           <div class="postImgBox">
             <div class="postImg">
@@ -44,7 +44,7 @@
           </div>
           <div class="clear"></div>
         </div>
-        <div class="darenActShadow" style="background-color: #CCC;"></div>
+        <!-- <div class="darenActShadow" style="background-color: #CCC;"></div> -->
 
       {{#if statusIs "ENROLLING"}}
         <span class="tf enroll" style='background:rgb(104, 208, 129)'>火热报名中</span>
@@ -61,5 +61,5 @@
 
     </div>
 
-  {{/with}}
+   {{/with}}
 </template>

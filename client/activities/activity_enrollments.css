@@ -13,12 +13,6 @@
 	border: 0;
 	z-index: 1001;
 }
-/*.enroll-btn {
-	background:rgb(236, 92, 92);
-}*/
-/*.enroll-btn {
-	opacity: 0.3;
-}*/
 .delete-enrollment {
 	float: right; margin-right: 10px; margin-left: 5px; margin-top: 8px; background: #F5F5DC; color: #868686; border: 0;
 }

@@ -336,3 +336,70 @@ ul, menu, dir {
     bottom:-4px;
   }
 }
+
+
+
+/*----------------活动管理Modal--------------------*/
+.activityManage_btn, .activityMessage_btn{
+  margin-top:0;
+  display: block;
+  border: none;
+  color:white;
+  background: rgba(0,161,206,.8);
+  width:50%;
+  height: 40px;
+  margin-top: 0px;
+  margin-bottom: 20px;
+  box-shadow: 0 0 8px black;
+}
+.activity_detail_header {
+  margin-top: 0
+}
+/*.activityManage_btn {
+  margin-top:0;
+  position: absolute;
+  top:0;
+  right:0;
+  position:fixed;
+}*/
+.activityMessage_btn {
+  background: rgba(104, 208, 129,.8)
+}
+
+.activities_manage_modal{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.manageContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  height: 300px;
+  width:300px;
+  border-radius: 20px;
+  background: rgba(55,178,276,.7);
+}
+.manageContainer a {
+  display:flex;
+  width:40%;
+  text-decoration: none;
+  color:white;
+  font-size: 60px;
+  flex-direction: column;
+  justify-content: center;
+  align-items:center;
+}
+.manageContainer a span {
+  font-size: 6px;
+}
+
+.activity_detail_header {
+  display: flex;
+  flex-direction: row;
+  justify-content:flex-end;
+}
+
+
+/*-------------NEW CARD CSS---------------*/

@@ -2,7 +2,22 @@
   {{#with activity}}
   <div class="">
     <div class="sPostACon">
-      {{#if userIsAuthor}}
+    {{#if userIsAuthor}}
+    <div class='activity_detail_header'>
+      <button type="button" class='activityManage_btn'>
+        <i class="fa fa-th-large" aria-hidden="true"></i>
+        <span>活动管理</span>
+      </button>
+      <button type="button" id="send_msg_btn" class='activityMessage_btn'>
+        <i class="fa fa-commenting-o" aria-hidden="true"></i>
+        <span>发送消息</span>
+      </button>
+    </div>
+    {{/if}}
+
+
+
+      <!-- {{#if userIsAuthor}}
         <div class="button-group" style="position: relative;height: 70px;">
           <a id="delete_activity" class="btn btn-xs btn-success" role="button" style="float: left; margin-top: 8px; margin-right: 5px; background-color: #ea6153; margin-left: 10px; border-color: #ea6153">删除活动</a>
           <a class="btn btn-xs btn-success closeActicity" href="#" role="button" style="float: right; margin-right: 10px; margin-left: 5px; margin-top: 8px;">结束活动</a>
@@ -14,7 +29,7 @@
           <a class="btn btn-xs btn-success"  href="{{pathFor 'activityEdit'}}" role="button" style="float: right; margin-top: 8px; margin-right: 5px;">编辑活动</a><br>
           <button id="send_msg_btn" type="button" class="btn btn-xs btn-warning" style="position: absolute;right: 10px;bottom: 10px;">发送消息</button>
         </div>
-      {{/if}}
+      {{/if}} -->
       <h1 class="sActConT" style="display: inline-flex;">{{title}}</h1>
       <div class="sPostAConText">
         <div class="sPostAConTextCon">
@@ -61,4 +76,35 @@
     </ul>
   </div>
   {{/with}}
+</template>
+
+
+<template name="activityManageModal">
+  <div class="wrapper modal fade activities_manage_modal">
+    <div class="manageContainer">
+      <a class="manage_edit" href="{{pathFor 'activityEdit'}}" role="button">
+        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+        <span>编辑活动</span>
+      </a>
+      {{#if statusIs "CANCEL"}}
+          <a class="recoverActicity"  href="#" role="button">
+               <i class="fa fa-check-square-o" aria-hidden="true"></i>
+               <span>恢复活动</span>
+          </a>
+        {{else}}
+          <a class="cancelActicity"  href="#" role="button">
+            <i class="fa fa-times-circle-o" aria-hidden="true"></i>
+            <span>取消活动</span>
+          </a>
+      {{/if}} 
+      <a class="closeActicity" role="button">
+        <i class="fa fa-ban closeActicity" aria-hidden="true"></i>
+        <span>结束活动</span>
+      </a>
+      <a class="delete_activity" role="button">
+        <i class="fa fa-trash" aria-hidden="true"></i>
+        <span>删除活动</span>
+      </a>
+    </div>
+ </div>
 </template>

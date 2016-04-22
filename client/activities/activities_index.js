@@ -15,4 +15,3 @@ Template.activitiesIndex.helpers({
     }
   }
 });
-

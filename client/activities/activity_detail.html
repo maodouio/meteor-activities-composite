@@ -41,23 +41,23 @@
         </div>
       </div>
     </div>
-    <ul class="sActList" style="padding-left: 0px;">
-        <li>
+    <ul class="sActList activity_main_info" style="padding-left: 0px;">
+        <li class='activity_info_item'>
             <span class="sActListIcon glyphicon glyphicon-calendar"></span>
             <span>时间：</span>
             <span>{{formatdatetime1 time}}</span>
         </li>
-        <li>
+        <li class='activity_info_item'>
             <span class="sActListIcon glyphicon glyphicon-globe"></span>
             <span>名额：</span>
             <span>{{limit}}</span>
         </li>
-        <li>
+        <li class='activity_info_item'>
             <span class="sActListIcon glyphicon glyphicon-usd"></span>
             <span>费用：</span>
             <span>{{fee}}</span>
         </li>
-        <li id="where" style='height:auto; padding-left:20px; padding-right:10px'>
+        <li id="where" style='height:auto; padding-left:20px; padding-right:10px' class='activity_info_item'>
             <span class="sActListIcon glyphicon glyphicon-map-marker" style='margin-left:-8px'></span>
             <span>地址：</span>
             <span>{{where}}</span>
@@ -84,26 +84,26 @@
     <div class="manageContainer">
       <a class="manage_edit" href="{{pathFor 'activityEdit'}}" role="button">
         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-        <span>编辑活动</span>
+        <span class='activity_choice'>编辑活动</span>
       </a>
       {{#if statusIs "CANCEL"}}
           <a class="recoverActicity"  href="#" role="button">
                <i class="fa fa-check-square-o" aria-hidden="true"></i>
-               <span>恢复活动</span>
+               <span class='activity_choice'>恢复活动</span>
           </a>
         {{else}}
           <a class="cancelActicity"  href="#" role="button">
             <i class="fa fa-times-circle-o" aria-hidden="true"></i>
-            <span>取消活动</span>
+            <span class='activity_choice'>取消活动</span>
           </a>
-      {{/if}} 
+      {{/if}}
       <a class="closeActicity" role="button">
         <i class="fa fa-ban closeActicity" aria-hidden="true"></i>
-        <span>结束活动</span>
+        <span class='activity_choice'>结束活动</span>
       </a>
       <a class="delete_activity" role="button">
         <i class="fa fa-trash" aria-hidden="true"></i>
-        <span>删除活动</span>
+        <span class='activity_choice'>删除活动</span>
       </a>
     </div>
  </div>

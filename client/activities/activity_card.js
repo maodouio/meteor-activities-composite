@@ -58,10 +58,14 @@ Template.activityCard.events({
       window.location.href = "/userLogin?logintype=/activities/" + this._id;
     }
   },
-  "click .postImg": function(event, template){
-    console.log('img clicked');
-    console.log(this);
-    console.log(template);
+  "click .postImgBox": function(event, template){
+    // console.log('img clicked');
+    // console.log(this);
+    // console.log(template);
+    // console.log('123')
+    if ((Router.current().url.length - Router.current().url.indexOf("activities")>11)) {
+      return;
+    }
     window.location.href = "/activities/"+this._id;
   },
 

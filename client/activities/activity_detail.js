@@ -38,15 +38,7 @@ Template.activityDetail.events ({
     }
     Modal.show("chatWindow", data);
   },
-  'click #delete_activity': function() {
-    var activityId = this._id;
-    if (confirm("你确定要删除这个活动吗?")) {
-      console.log(activityId);
-      Meteor.call("deleateActivity", activityId, function(error, result){
-        window.location.href = "/activities";
-      });
-    }
-  },
+
   //  活动管理
   'click .activityManage_btn': function(){
      var data = this
@@ -86,14 +78,15 @@ Template.activityManageModal.events({
   "click .manage_edit" : function(){
     Modal.hide();
   },
-  'click .closeActicity': function( ) {
+  'click .closeActicity': function(e) {
     Modal.hide();
+    e.stopPropagation();
     if(confirm("你确定要结束这个活动吗?")) {
       console.log('活动已结束!');
       Activities.update({_id: this._id}, {$set: {"status": "CLOSED"}});
     }
   },
-  'click .cancelActicity': function( ) {
+  'click .cancelActicity': function(e, t) {
     Modal.hide();
     if(confirm("你确定要取消这个活动吗?")) {
       console.log('活动已取消!');
@@ -113,6 +106,15 @@ Template.activityManageModal.events({
         var content = "【活动取消通知】“" + this.title + "” 活动已取消，特此通知";
         Meteor.call("multiSendMessage", list, content);
       }
+    }
+  },
+  'click .delete_activity': function() {
+    var activityId = this._id;
+    if (confirm("你确定要删除这个活动吗?")) {
+      console.log(activityId);
+      Meteor.call("deleateActivity", activityId, function(error, result){
+        window.location.href = "/activities";
+      });
     }
   },
   'click .recoverActicity': function( ) {

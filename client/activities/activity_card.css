@@ -26,7 +26,7 @@ div {
     padding: 1px 10px 10px 10px;
     width: 100%;
     height: auto;
-    background: #F7F4F0;
+    background: #F5F5F5;
     padding-left: 0px;
     padding-right: 0px;
 }
@@ -242,8 +242,8 @@ ul, menu, dir {
     font-size: 15px;
     font-family: '华文细黑', 'Microsoft YaHei', Helvetica, Arial;
     line-height: 44px;
-    background: #F7F4EF;
-    border-bottom: 1px solid #ded8d0;
+    background: rgba(68,164,214,.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);;
     border-top: 1px solid #fff;
 }
 .sActListIcon {
@@ -350,7 +350,7 @@ ul, menu, dir {
   height: 40px;
   margin-top: 0px;
   margin-bottom: 20px;
-  box-shadow: 0 0 8px black;
+  box-shadow: 0 1px 3px #ccc;
 }
 .activity_detail_header {
   margin-top: 0
@@ -391,8 +391,8 @@ ul, menu, dir {
   justify-content: center;
   align-items:center;
 }
-.manageContainer a span {
-  font-size: 6px;
+.activity_choice {
+  font-size: .25em
 }
 
 .activity_detail_header {
@@ -402,4 +402,8 @@ ul, menu, dir {
 }
 
 
-/*-------------NEW CARD CSS---------------*/
+/*-------------detail html change---------------*/
+
+.activity_main_info {
+  border: none;
+}

@@ -46,12 +46,11 @@ if (Activities.find().count() < 2) {
     var buffer = result.body;
     console.log(result.response.headers);
     fileObj.attachData(buffer, {type: result.response.headers['content-type']});
-    var image = Images.insert(fileObj);
 
     Meteor.call("insertData",
       titleArr[index],
       descArr[index],
-      image._id,
+      imgArr[index],
       new Date(),
       whereArr[index]
     );

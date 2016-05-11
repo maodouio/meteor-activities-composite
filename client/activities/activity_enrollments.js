@@ -98,11 +98,30 @@ Template.activityEnrollments.events ({
 
     if (userProfile) {
       Modal.show("needInfo",{type: "update",profile: userProfile});
-      return;
+      //return;
     } else {
       Modal.show("needInfo",{type: "insert",profile: userProfile});
-      return;
+      //return;
     }
+    console.log("------Meteor.userId()");
+    console.log(Meteor.userId());
+    console.log("------this.data.activity");
+    console.log(this._id);
+    var invitorOpenId = Meteor.user().profile.openId;
+    var type = "ACTIVITY";
+    var linkedId = this._id;
+
+    //创建sceneId
+    Meteor.call("createSceneId",invitorOpenId,type,linkedId,function(e,r){
+      // var sceneId = r;
+      // Meteor.call("createMediaId",sceneId,function(e,r){
+        alert("已推送您的邀请卡图片，请查收，并且转发给5个好友，即可免报名费用");
+        // var mediaId = r;
+
+      // });
+    });
+
+    return;
   }
 });
 

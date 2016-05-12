@@ -128,28 +128,31 @@ Template.activityEnrollments.events ({
          sceneId = r;
          Meteor.call("genInviteCardWithQrc",sceneId,function(e,r){    //create avatar.jpg output.jpg in /tmp
            Meteor.call("createMediaId",function(e,r){   //upload output.jpg to Wechat
-             alert("已推送您的邀请卡图片，请查收，并且转发给5个好友，即可免报名费用");
-             mediaId = r;
-             console.log('mmmmmmmmmmmmm');
-             console.log('invitorOpenId',invitorOpenId);
-             console.log('mediaId',mediaId);
-             Meteor.call("createScene",sceneId,invitorOpenId,type,linkedId,mediaId,function(e,r){
-               Meteor.call('sendImageToOpenId', invitorOpenId, mediaId,function(e,r){
-                 if(e){
-                   cosole.log('error2 sendImageToOpenId',e);
-                 }
-                 else{
-                   var support = Followers.find({"sceneId" : sceneId}).count();
-                   content = " 已关注您，关注您的人数已达(" + support + ")人";
-                   //use qr_index to send message
-                   Meteor.call('sendMessageToOpenId', invitorOpenId, content,function(e,r){
-                     if(e){
-                       console.log('error3 sendMessageToQrIndex',e);
-                     }
-                   });
-                 }
+             if(r){
+               console("createMediaId return value",r)
+               alert("已推送您的邀请卡图片，请查收，并且转发给5个好友，即可免报名费用");
+               mediaId = r;
+               console.log('mmmmmmmmmmmmm');
+               console.log('invitorOpenId',invitorOpenId);
+               console.log('mediaId',mediaId);
+               Meteor.call("createScene",sceneId,invitorOpenId,type,linkedId,mediaId,function(e,r){
+                 Meteor.call('sendImageToOpenId', invitorOpenId, mediaId,function(e,r){
+                   if(e){
+                     cosole.log('error2 sendImageToOpenId',e);
+                   }
+                   else{
+                     var support = Followers.find({"sceneId" : sceneId}).count();
+                     content = " 已关注您，关注您的人数已达(" + support + ")人";
+                     //use qr_index to send message
+                     Meteor.call('sendMessageToOpenId', invitorOpenId, content,function(e,r){
+                       if(e){
+                         console.log('error3 sendMessageToQrIndex',e);
+                       }
+                     });
+                   }
+                 });
                });
-             });
+             }
            });
         });
       });

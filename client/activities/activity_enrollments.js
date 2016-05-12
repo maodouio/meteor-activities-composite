@@ -106,10 +106,25 @@ Template.activityEnrollments.events ({
     console.log("------Meteor.userId()");
     console.log(Meteor.userId());
     console.log("------this.data.activity");
-    console.log(this._id);
-    var invitorOpenId = Meteor.user().profile.openId;
+    console.log(this._id);    
+    console.log("------Meteor.user().profile.openid");
+    console.log(Meteor.user().profile.openid);
+    console.log("------Meteor.user().username");
+    console.log(Meteor.user().username);
+
+
+    if(Meteor.user().profile.openid){ //有时候没有openId
+      var invitorOpenId = Meteor.user().profile.openid;    
+    }
+    else{
+      var invitorOpenId = Meteor.user().username;
+      // console.log('!!invitorOpenId error');
+    }
+    
     var type = "ACTIVITY";
     var linkedId = this._id;
+
+    console.log('!!invitorOpenId',invitorOpenId);
 
     //创建sceneId
     Meteor.call("createSceneId",invitorOpenId,type,linkedId,function(e,r){

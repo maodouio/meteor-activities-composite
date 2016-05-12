@@ -106,36 +106,39 @@ Template.activityEnrollments.events ({
     console.log("------Meteor.userId()");
     console.log(Meteor.userId());
     console.log("------this.data.activity");
-    console.log(this._id);    
-    console.log("------Meteor.user().profile.openid");
-    console.log(Meteor.user().profile.openid);
-    console.log("------Meteor.user().username");
-    console.log(Meteor.user().username);
+    console.log(this._id);
+    console.log("------Meteor.user()");
+    console.log(Meteor.user());
+    var invitorOpenId;
 
+    if(Meteor.user().profile.openId){
+      invitorOpenId = Meteor.user().profile.openId;
+    }else {
+      invitorOpenId = "obBdRwulmyqZD3lRxMWzuchDSFV0";  //default zhaoic's openid just for debug in local
+    }
 
-    if(Meteor.user().profile.openid){ //有时候没有openId
-      var invitorOpenId = Meteor.user().profile.openid;    
-    }
-    else{
-      var invitorOpenId = Meteor.user().username;
-      // console.log('!!invitorOpenId error');
-    }
-    
     var type = "ACTIVITY";
     var linkedId = this._id;
+    var sceneId;
+    var mediaId;
 
-    console.log('!!invitorOpenId',invitorOpenId);
+    if(Scenes.find({"linkedId" : linkedId, "invitorOpenId" : invitorOpenId}).count() == 0) {
+      //创建sceneId
+      Meteor.call("createSceneId",invitorOpenId,type,linkedId,function(e,r){
+         sceneId = r;
+         Meteor.call("createMediaId",function(e,r){
+           alert("已推送您的邀请卡图片，请查收，并且转发给5个好友，即可免报名费用");
+           mediaId = r;
+           console.log('invitorOpenId',invitorOpenId)
+           Meteor.call("createScene",sceneId,invitorOpenId,type,linkedId,mediaId,function(e,r){
 
-    //创建sceneId
-    Meteor.call("createSceneId",invitorOpenId,type,linkedId,function(e,r){
-      // var sceneId = r;
-      // Meteor.call("createMediaId",sceneId,function(e,r){
-        alert("已推送您的邀请卡图片，请查收，并且转发给5个好友，即可免报名费用");
-        // var mediaId = r;
-
-      // });
-    });
-
+           });
+         });
+      });
+    }
+    else{
+      alert("本次活动你已创建过邀请卡");
+    }
     return;
   }
 });

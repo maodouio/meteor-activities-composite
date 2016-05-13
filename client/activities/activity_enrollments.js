@@ -157,18 +157,24 @@ Template.activityEnrollments.events ({
     //     });
     //   });
     //
-    // if(Scenes.find({"linkedId" : linkedId, "invitorOpenId" : invitorOpenId}).fetch().count() == 0) {
+    // var mediaId = Scenes.find({"linkedId" : linkedId, "invitorOpenId" : invitorOpenId}).fetch()[0].mediaId;
+    // console.log('\n\n[activity_enrollment.js] mediaId' ,linkedId,invitorOpenId,tmp);
+     // if(mediaId){
+     // if(Scenes.find({"linkedId" : linkedId, "invitorOpenId" : invitorOpenId}).fetch().count() == 0) {
+      console.log('\n\n[activity_enrollment.js] create new sceneid');
       Meteor.call("createScene",invitorOpenId,type,linkedId,function(e,r){
         if(r){
-          alert("已推送您的邀请卡图片，请查收，并且转发给5个好友，即可免报名费用");
+          // alert("已推送您的邀请卡图片，请查收，并且转发给5个好友，即可免报名费用");
         }
         else {
-          alert("本次活动你已创建过邀请卡");
+          // alert("本次活动你已创建过邀请卡");
         }
       });
     // }
     // else{
-    //
+    //   var oldMediaId = mediaId;
+    //   console.log('\n\n[activity_enrollment.js] oldMediaId',oldMediaId);
+    //   Meteor.call('sendImageToOpenId', invitorOpenId, oldMediaId,function(e,r){});
     // }
     return;
   }
@@ -210,6 +216,7 @@ AutoForm.hooks({
         Meteor.call("multiSendMessage", list, "【活动报名成功】“" + activity.title + "” 活动您已成功报名.\n\n时间：" + time + "\n地点：" + activity.where );
       }
       console.log('您已成功报名了!');
+      alert("已推送您的邀请卡图片，请查收，并且转发给5个好友，即可免报名费用");
     },
     onError: function(operation, error, template) {
       console.log('失败');

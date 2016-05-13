@@ -122,60 +122,15 @@ Template.activityEnrollments.events ({
     var sceneId;
     var mediaId;
 
-    // if(Scenes.find({"linkedId" : linkedId, "invitorOpenId" : invitorOpenId}).count() == 0) {
-    //   //创建sceneId
-    //   Meteor.call("createSceneId",invitorOpenId,type,linkedId,function(e,r){
-    //      sceneId = r;
-    //      Meteor.call("genInviteCardWithQrc",sceneId,function(e,r){    //create avatar.jpg output.jpg in /tmp
-    //        Meteor.call("createMediaId",function(e,r){   //upload output.jpg to Wechat
-    //          if(r){
-    //            console("createMediaId return value",r)
-    //            alert("已推送您的邀请卡图片，请查收，并且转发给5个好友，即可免报名费用");
-    //            mediaId = r;
-    //            console.log('mmmmmmmmmmmmm');
-    //            console.log('invitorOpenId',invitorOpenId);
-    //            console.log('mediaId',mediaId);
-    //            Meteor.call("createScene",sceneId,invitorOpenId,type,linkedId,mediaId,function(e,r){
-    //              Meteor.call('sendImageToOpenId', invitorOpenId, mediaId,function(e,r){
-    //                if(e){
-    //                  cosole.log('error2 sendImageToOpenId',e);
-    //                }
-    //                else{
-    //                  var support = Followers.find({"sceneId" : sceneId}).count();
-    //                  content = " 已关注您，关注您的人数已达(" + support + ")人";
-    //                  //use qr_index to send message
-    //                  Meteor.call('sendMessageToOpenId', invitorOpenId, content,function(e,r){
-    //                    if(e){
-    //                      console.log('error3 sendMessageToQrIndex',e);
-    //                    }
-    //                  });
-    //                }
-    //              });
-    //            });
-    //          }
-    //        });
-    //     });
-    //   });
-    //
-    // var mediaId = Scenes.find({"linkedId" : linkedId, "invitorOpenId" : invitorOpenId}).fetch()[0].mediaId;
-    // console.log('\n\n[activity_enrollment.js] mediaId' ,linkedId,invitorOpenId,tmp);
-     // if(mediaId){
-     // if(Scenes.find({"linkedId" : linkedId, "invitorOpenId" : invitorOpenId}).fetch().count() == 0) {
-      console.log('\n\n[activity_enrollment.js] create new sceneid');
-      Meteor.call("createScene",invitorOpenId,type,linkedId,function(e,r){
-        if(r){
-          // alert("已推送您的邀请卡图片，请查收，并且转发给5个好友，即可免报名费用");
-        }
-        else {
-          // alert("本次活动你已创建过邀请卡");
-        }
-      });
-    // }
-    // else{
-    //   var oldMediaId = mediaId;
-    //   console.log('\n\n[activity_enrollment.js] oldMediaId',oldMediaId);
-    //   Meteor.call('sendImageToOpenId', invitorOpenId, oldMediaId,function(e,r){});
-    // }
+    console.log('\n\n[activity_enrollment.js] create new sceneid');
+    Meteor.call("createScene",invitorOpenId,type,linkedId,function(e,r){
+      if(r){
+        // alert("已推送您的邀请卡图片，请查收，并且转发给5个好友，即可免报名费用");
+      }
+      else {
+        // alert("本次活动你已创建过邀请卡");
+      }
+    });
     return;
   }
 });

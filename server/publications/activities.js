@@ -21,6 +21,30 @@ Meteor.publish('firstUploaded', function () {
 //   return Activities.find({_id: id});
 // });
 
+
+Meteor.publishComposite("scene", function(userId, activityId) {
+  return {
+    find: function() {
+      var openId;
+      if(userId){
+        var user = Meteor.users.findOne(userId);
+        if(user){
+          openId = user.profile.openId;
+        }
+        else{
+          return null;
+        }
+      }
+      else{
+        return null;
+      }
+      console.log("Scenes.find", openId,activityId);
+      return Scenes.find({invitorOpenId: openId, linkedId: activityId});
+    },
+  }
+});
+
+
 Meteor.publishComposite("activity", function(id) {
   return {
     find: function() {

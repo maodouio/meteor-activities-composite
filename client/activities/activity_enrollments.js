@@ -160,16 +160,19 @@ AutoForm.hooks({
       var sceneId;
       var mediaId;
 
+      console.log("show modal invitor card");
+
+      var fromUser = Meteor.userId();
+      var toUser = this._id;
+      var data = {
+        fromUser		: fromUser,
+        toUser			: toUser
+      }
+
       console.log('\n\n[activity_enrollment.js] create new sceneid');
       Meteor.call("createScene",invitorOpenId,type,linkedId,Meteor.user().profile,function(e,r){
-        alert("已推送您的邀请卡图片，请查收，并且转发给5个好友，即可免报名费用");
-        // if(r){
-        //   console.log('您已成功报名了!');
-
-        // }
-        // else {
-        //   alert("本次活动你已创建过邀请卡");
-        // }
+        // alert("已推送您的邀请卡图片，请查收，并且转发给5个好友，即可免报名费用");
+        Modal.show("invitorCard");
       });
 
     },

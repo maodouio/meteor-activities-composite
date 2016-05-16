@@ -16,7 +16,6 @@ Template.needInfo.events({
 AutoForm.addHooks(['userMoreInfoForm'], {
   before: {
     update: function(doc) {
-
       return doc;
     },
     insert: function(doc) {

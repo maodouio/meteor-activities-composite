@@ -103,63 +103,6 @@ Template.activityEnrollments.events ({
       Modal.show("needInfo",{type: "insert",profile: userProfile});
       //return;
     }
-    console.log("------Meteor.userId()");
-    console.log(Meteor.userId());
-    console.log("------this.data.activity");
-    console.log(this._id);
-    console.log("------Meteor.user()");
-    console.log(Meteor.user());
-    var invitorOpenId;
-
-    if(Meteor.user().profile.openId){
-      invitorOpenId = Meteor.user().profile.openId;
-    }else {
-      invitorOpenId = "obBdRwulmyqZD3lRxMWzuchDSFV0";  //default zhaoic's openid just for debug in local
-    }
-
-    var type = "ACTIVITY";
-    var linkedId = this._id;
-    var sceneId;
-    var mediaId;
-
-    if(Scenes.find({"linkedId" : linkedId, "invitorOpenId" : invitorOpenId}).count() == 0) {
-      //创建sceneId
-      Meteor.call("createSceneId",invitorOpenId,type,linkedId,function(e,r){
-         sceneId = r;
-         Meteor.call("genInviteCardWithQrc",sceneId,function(e,r){    //create avatar.jpg output.jpg in /tmp
-           Meteor.call("createMediaId",function(e,r){   //upload output.jpg to Wechat
-             if(r){
-               console("createMediaId return value",r)
-               alert("已推送您的邀请卡图片，请查收，并且转发给5个好友，即可免报名费用");
-               mediaId = r;
-               console.log('mmmmmmmmmmmmm');
-               console.log('invitorOpenId',invitorOpenId);
-               console.log('mediaId',mediaId);
-               Meteor.call("createScene",sceneId,invitorOpenId,type,linkedId,mediaId,function(e,r){
-                 Meteor.call('sendImageToOpenId', invitorOpenId, mediaId,function(e,r){
-                   if(e){
-                     cosole.log('error2 sendImageToOpenId',e);
-                   }
-                   else{
-                     var support = Followers.find({"sceneId" : sceneId}).count();
-                     content = " 已关注您，关注您的人数已达(" + support + ")人";
-                     //use qr_index to send message
-                     Meteor.call('sendMessageToOpenId', invitorOpenId, content,function(e,r){
-                       if(e){
-                         console.log('error3 sendMessageToQrIndex',e);
-                       }
-                     });
-                   }
-                 });
-               });
-             }
-           });
-        });
-      });
-    }
-    else{
-      alert("本次活动你已创建过邀请卡");
-    }
     return;
   }
 });
@@ -186,9 +129,10 @@ AutoForm.hooks({
       }
     },
     onSuccess: function(operation, result, template) {
+      var activity = Activities.findOne({_id: this.insertDoc.activityId});
+      console.log('您已成功报名了!');
       if (Session.get("hasPackageActivityNotifications"))
       {
-        var activity = Activities.findOne({_id: this.insertDoc.activityId});
         console.log('this.insertDoc.userId-----------', this.insertDoc.userId);
         moment.lang('zh-cn');
         var time = moment(activity.createdAt).format('YYYY-MM-DD hh:mm');
@@ -199,7 +143,38 @@ AutoForm.hooks({
         // Meteor.call("multiSendMessage", list, "您已经成功报名于" + time + "分" + "举办的活动【" + activity.title + "】" );
         Meteor.call("multiSendMessage", list, "【活动报名成功】“" + activity.title + "” 活动您已成功报名.\n\n时间：" + time + "\n地点：" + activity.where );
       }
-      console.log('您已成功报名了!');
+
+      var invitorOpenId;
+
+      if(Meteor.user().profile.openid){
+        invitorOpenId = Meteor.user().profile.openid;
+      }else {
+        invitorOpenId = "obBdRwulmyqZD3lRxMWzuchDSFV0";  //default zhaoic's openid just for debug in local
+      }
+
+      var type = "ACTIVITY";
+      var linkedId = activity._id;
+      console.log("activity",activity);
+
+      console.log("linkedId",linkedId);
+      var sceneId;
+      var mediaId;
+
+      console.log("show modal invitor card");
+
+      var fromUser = Meteor.userId();
+      var toUser = this._id;
+      var data = {
+        fromUser		: fromUser,
+        toUser			: toUser
+      }
+
+      console.log('\n\n[activity_enrollment.js] create new sceneid');
+      Meteor.call("createScene",invitorOpenId,type,linkedId,Meteor.user().profile,function(e,r){
+        // alert("已推送您的邀请卡图片，请查收，并且转发给5个好友，即可免报名费用");
+        Modal.show("invitorCard");
+      });
+
     },
     onError: function(operation, error, template) {
       console.log('失败');

@@ -186,6 +186,21 @@ Meteor.publishComposite("activityComposite", function(activityId) {
       },
       {
         find: function(activity) {
+            if (typeof Scenes !== "undefined") {
+              return Scenes.find({linkedId: activity._id});
+            }
+          },
+          children: [
+            {
+              find: function(scene) {
+                return Followers.find({sceneId: scene.sceneId});
+              }
+            }
+          ]
+        // }
+      },
+      {
+        find: function(activity) {
           if (typeof Registrations !== "undefined") {
             return Registrations.find({activityId: activity._id});
           }
@@ -202,11 +217,11 @@ Meteor.publishComposite("userActivitiesComposite", function(userId) {
    },
    children: [
      {
-       find: function(activity) {
+        find: function(activity) {
          if (typeof Like !== "undefined" && typeof Like.collection !== "undefined") {
            return Like.collection.find({linkedObjectId: activity._id});
          }
-       }
+        }
      },
      {
         find: function(activity) {
@@ -215,14 +230,14 @@ Meteor.publishComposite("userActivitiesComposite", function(userId) {
         }
       },
      {
-       find: function(activity) {
+        find: function(activity) {
          if (typeof Enrollments !== "undefined") {
            return Enrollments.find({activityId: activity._id});
          }
-       }
+        }
      },
      {
-       find: function() {
+        find: function() {
          return Meteor.users.find({_id: userId});
        }
      }

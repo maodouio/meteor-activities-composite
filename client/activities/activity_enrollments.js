@@ -3,9 +3,62 @@ Template.activityEnrollments.onRendered(function(){
 });
 
 Template.activityEnrollments.helpers({
+  followersCount: function(){
+
+    var openid = this.openid;
+    var activityId = this.activityId;
+    var scene = Scenes.findOne({invitorOpenId: openid ,linkedId: activityId});
+    var sceneId;
+    var count;
+    if(scene){
+      sceneId = scene.sceneId;
+      count = Followers.find({sceneId:sceneId}).count();
+    }
+    else{
+      count = 0;
+    }
+
+
+    console.log("count is :",count);
+
+
+
+
+
+
+
+
+
+    // var userId = this.userId();
+    // console.log("userId is :",userId);
+    //
+    // var enrollment = Enrollments.findOne({userId: userId});
+    //
+    //
+    // var openid = enrollment.openid;
+    // console.log("openid is :",openid);
+    // var activityId = enrollment.activityId;
+    // var sceneId = Scenes.findOne({invitorOpenId: openid ,linkedId: activityId}).sceneId;
+    //
+    // var count = Followers.find({sceneId:sceneId}).count();
+
+
+    // _.each(Enrollments.find({"$or": [ {"isPay":true}, {"isWaived":true} ] }).fetch(), function(e){
+    //   console.log("xxxx",e);
+    //   // var user = Meteor.users.findOne(e.userId);
+    //   var openid = e.openid;
+    //   var activityId = e.activityId;
+    //   var sceneId = Scenes.findOne({invitorOpenId: openid ,linkedId: activityId}).sceneId;
+    //   var count = Followers.find({sceneId:sceneId}).count();
+    //   console.log("count is :",count);
+    // });
+
+
+    return count;
+  },
   paidUser: function() {
-    // var list = Enrollments.find({"isPay":true}).fetch();
-    var list = Enrollments.find({"$or": [ {"isPay":true}, {"isWaived":true} ] }).fetch();
+    // var list = Enrollments.find({"isPay":true}).fetch();, {"isWaived":true}
+    var list = Enrollments.find({"$or": [ {"isPay":true}] }).fetch();
     _.each(list,function(user){user.userprofile = UserProfiles.findOne({userId:user.userId})});
     console.log(list);
     return list;
@@ -13,11 +66,11 @@ Template.activityEnrollments.helpers({
   needPay: function() {
     var fee = Activities.findOne().fee;
     var isPay = Enrollments.findOne({userId: Meteor.userId() }).isPay;
-    var isWaived = Enrollments.findOne({userId: Meteor.userId() }).isWaived;
-    if(isWaived){
-      return false;
-    }
-    else if(fee > 0 && !isPay) {
+    // var isWaived = Enrollments.findOne({userId: Meteor.userId() }).isWaived;
+    // if(isWaived){
+    //   return false;
+    // }
+    if(fee > 0 && !isPay) {
       return true;
     }
     return false;
@@ -118,6 +171,7 @@ AutoForm.hooks({
       insert: function(doc) {
         if (Meteor.user()) {
           doc.userId = Meteor.userId();
+          doc.openid = Meteor.user().username;
           doc.headimgurl = Meteor.user().profile.headimgurl;
           doc.isRegistered = false;
           doc.createdAt = new Date();

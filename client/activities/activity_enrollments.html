@@ -37,7 +37,7 @@
       <thead>
         <tr>
           <th></th>
-          <th >姓名</th>
+          <th>姓名</th>
           <th>职位</th>
           <th>公司</th>
         </tr>
@@ -46,10 +46,11 @@
         {{#each paidUser}}
         <tr>
           <td><a href='/users/{{userId}}' style="float: left;"> <img src="{{headimgurl}}" style="width: 35px; height: 35px; border-radius: 50%;"/> </a>
-</td>
+{{followersCount}}</td>
 <!-- <td><a href='/users/{{userId}}' style="float: left;"> <img src="http://wx.qlogo.cn/mmopen/PiajxSqBRaEK6MozZvu5w33YLjwGmxAvRTNR7q2DsLqticT1yhlD3icORq2V5oYXfMCXlMoCHicZUXS6bDoawCS7hg/0
 " style="width: 35px; height: 35px; border-radius: 50%;"/> </a>
 </td> -->
+          <!-- <td>{{followersCount}}</td> -->
           <td>{{userprofile.name}}</td>
           <td>{{userprofile.positions}}</td>
           <td>{{userprofile.company}}</td>

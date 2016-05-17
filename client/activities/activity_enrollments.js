@@ -4,7 +4,8 @@ Template.activityEnrollments.onRendered(function(){
 
 Template.activityEnrollments.helpers({
   paidUser: function() {
-    var list = Enrollments.find({"isPay":true}).fetch();
+    // var list = Enrollments.find({"isPay":true}).fetch();
+    var list = Enrollments.find({"$or": [ {"isPay":true}, {"isWaived":true} ] }).fetch();
     _.each(list,function(user){user.userprofile = UserProfiles.findOne({userId:user.userId})});
     console.log(list);
     return list;
@@ -12,7 +13,11 @@ Template.activityEnrollments.helpers({
   needPay: function() {
     var fee = Activities.findOne().fee;
     var isPay = Enrollments.findOne({userId: Meteor.userId() }).isPay;
-    if(fee > 0 && !isPay) {
+    var isWaived = Enrollments.findOne({userId: Meteor.userId() }).isWaived;
+    if(isWaived){
+      return false;
+    }
+    else if(fee > 0 && !isPay) {
       return true;
     }
     return false;

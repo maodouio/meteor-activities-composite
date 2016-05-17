@@ -162,19 +162,13 @@ AutoForm.hooks({
 
       console.log("show modal invitor card");
 
-      var fromUser = Meteor.userId();
-      var toUser = this._id;
-      var data = {
-        fromUser		: fromUser,
-        toUser			: toUser
+      if(confirm("请确定生成您的二维码邀请卡，邀请5位好友减免报名费用。\n点击取消，则使用微信支付。")){
+        console.log('\n\n[activity_enrollment.js] create new sceneid');
+        Meteor.call("createInvitorCardImg",invitorOpenId,type,linkedId,Meteor.user().profile,function(e,r){
+          console.log("show invitecard here");
+          Modal.show("invitorCard", {activityId: linkedId});
+        });
       }
-
-      console.log('\n\n[activity_enrollment.js] create new sceneid');
-      Meteor.call("createScene",invitorOpenId,type,linkedId,Meteor.user().profile,function(e,r){
-        // alert("已推送您的邀请卡图片，请查收，并且转发给5个好友，即可免报名费用");
-        Modal.show("invitorCard");
-      });
-
     },
     onError: function(operation, error, template) {
       console.log('失败');

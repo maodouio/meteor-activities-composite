@@ -29,7 +29,7 @@ Meteor.publishComposite("scene", function(userId, activityId) {
       if(userId){
         var user = Meteor.users.findOne(userId);
         if(user){
-          openId = user.profile.openId;
+          openId = user.profile.openid;
         }
         else{
           return null;

@@ -7,7 +7,7 @@ Template.activityShow.helpers({
 Template.activityShow.onCreated(function() {
   var activity = Activities.findOne();
   //window.location.href = "/activities/"+activity._id;
-  Meteor.call("printLog", 'onCreated = ', activity._id);
+  Meteor.call("printLog", 'ActivityShow onCreated = ', activity._id);
 });
 
 Template.activityShow.events ({
@@ -22,17 +22,17 @@ Template.activityShow.onRendered(function() {
   var imgUrl = $(".postImg > img")[0].src;
   var userId = this.data.activity.userId;
   var authorProfile = UserProfiles.findOne({userId: userId});
-  console.log(authorProfile);
+  // console.log(authorProfile);
 
   var logoId = authorProfile.logo;
   var logo = Logos.findOne({_id: logoId});
-  console.log(logo);
+  // console.log(logo);
   if (logo)
   {
     imgUrl = logo.url();  // imgUrl is like /cfs/files/logos/Es8ijwmyGcEt8bp8B/searchicon.jpg
     imgUrl = window.location.origin + imgUrl;
   }
-  console.log(imgUrl);
+  // console.log(imgUrl);
 
   var desc = "时间: " + moment(this.data.activity.time).format("YYYY-MM-DD");
   desc = desc + "\n地点: " + this.data.activity.where;
@@ -40,7 +40,7 @@ Template.activityShow.onRendered(function() {
   if (this.data.activity.limit) {
     desc = desc + "\n人数: " + this.data.activity.limit;
   }
-  console.log(desc);
+  // console.log(desc);
 
 	var share_config = {
        "share": {
@@ -61,8 +61,8 @@ Template.activityShow.onRendered(function() {
 
   var url = "";
   var current = Iron.Location.get();
-  Meteor.call("printLog", 'current.host = ', current.host);
-  Meteor.call("printLog", 'this.data.activity._id = ', this.data.activity._id);
+  // Meteor.call("printLog", 'current.host = ', current.host);
+  // Meteor.call("printLog", 'this.data.activity._id = ', this.data.activity._id);
 
   if (current.host === "") {
     // route 过来的地址，微信只能获取到 /activities 截止，后面的取不到了
@@ -76,13 +76,13 @@ Template.activityShow.onRendered(function() {
     // 刷新页面或者新建文章后跳转的页面，微信获取的是完整地址
     url = window.location.href;
     var purl = '<' + url + '>';
-    Meteor.call("printLog", '2 url = ', purl);
+    Meteor.call("printLog", 'activity url = ', purl);
   }
 
   // 根据不同情况传递不同的地址获取 signature
   Meteor.call("signature", url, function(error, result) {
-    console.log(result.signature);
-    Meteor.call("printLog", "result.signature", result.signature);
+    // console.log(result.signature);
+    // Meteor.call("printLog", "result.signature", result.signature);
 
     wx.config({
       debug: false,

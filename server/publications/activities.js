@@ -25,11 +25,11 @@ Meteor.publish('firstUploaded', function () {
 Meteor.publishComposite("scene", function(userId, activityId) {
   return {
     find: function() {
-      var openId;
+      var openid;
       if(userId){
         var user = Meteor.users.findOne(userId);
         if(user){
-          openId = user.profile.openid;
+          openid = user.profile.openid;
         }
         else{
           return null;
@@ -38,8 +38,8 @@ Meteor.publishComposite("scene", function(userId, activityId) {
       else{
         return null;
       }
-      console.log("Scenes.find", openId,activityId);
-      return Scenes.find({invitorOpenId: openId, linkedId: activityId});
+      console.log("Scenes.find", openid,activityId);
+      return Scenes.find({invitorOpenId: openid, linkedId: activityId});
     },
   }
 });

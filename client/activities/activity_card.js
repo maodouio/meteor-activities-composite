@@ -9,7 +9,7 @@ Template.activityCard.helpers({
   },
   file: function () {
     var id = this.picture;
-    console.log('id:', id);
+    // console.log('id:', id);
     return Images.findOne({_id: id});
   },
   hasLiked: function () {
@@ -31,7 +31,7 @@ Template.activityCard.helpers({
     return this.status === status;
   },
   getClassByStatus: function() {
-    console.log(this);
+    // console.log(this);
     if (this.status === "CANCEL" || this.status === "CLOSED")
       return "darenPostListGray";
 
@@ -73,6 +73,6 @@ Template.activityCard.events({
 
 Template.activityCard.rendered = function() {
   // Counter++ everytime page rendered.
-  console.log(this.data.activity._id);
+  // console.log(this.data.activity._id);
   Activities.update(this.data.activity._id, {$inc: {activityViewCounter: 1}});
 };
